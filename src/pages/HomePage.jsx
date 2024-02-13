@@ -1,9 +1,11 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 
 class HomePage extends Component {
     render() {
         return (
-            <div>HomePage</div>
+            <Fragment>
+                <h1>This is Home Page</h1>
+            </Fragment>
         )
     }
 }
