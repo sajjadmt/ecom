@@ -11,7 +11,7 @@ class FeaturedProducts extends Component {
                             FEATURED PRODUCTS
                         </h2>
                         <p>
-                            Collection That You May Like
+                            Products That You May Like
                         </p>
                     </div>
                     <Row>
