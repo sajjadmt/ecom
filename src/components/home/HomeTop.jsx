@@ -12,7 +12,9 @@ class HomeTop extends Component {
                         <Col lg={3} md={3} sm={12}>
                             <MegaMenu />
                         </Col>
-                        <Col lg={9} md={9} sm={12}>
+                    </Row>
+                    <Row>
+                        <Col>
                             <HomeSlider />
                         </Col>
                     </Row>

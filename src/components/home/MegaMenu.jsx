@@ -1,234 +1,32 @@
 import React, {Component} from 'react'
+import {Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
 
 class MegaMenu extends Component {
-
-    constructor() {
-        super();
-        this.MegaMenu = this.MegaMenu.bind(this);
-    }
-
-    componentDidMount() {
-        this.MegaMenu();
-    }
-
-    MegaMenu(){
-        var acc = document.getElementsByClassName("accordion");
-        var accNum = acc.length;
-        var i;
-        for (i=0;i<accNum;i++){
-            acc[i].addEventListener("click",function (){
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.maxHeight){
-                    panel.style.maxHeight = null;
-                }else {
-                    panel.style.maxHeight = panel.scrollHeight+ "px";
-                }
-            })
-        }
-    }
-
     render() {
         return (
-            <div className="accordionMenuDiv">
-                <div className="accordionMenuDivInside">
-                    <button className="accordion">
-                        <img src="https://cdn-icons-png.flaticon.com/128/2976/2976215.png" alt=""
-                             className="accordionMenuIcon"/>
-                        &nbsp; Menu
-                    </button>
-                    <div className="panel">
-                        <ul>
-                            <li>
-                                <a href="#" className="accordionItem">Products</a>
-                                <a href="#" className="accordionItem">Categories</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <button className="accordion">
-                        <img src="https://cdn-icons-png.flaticon.com/128/2976/2976215.png" alt=""
-                             className="accordionMenuIcon"/>
-                        &nbsp; Menu
-                    </button>
-                    <div className="panel">
-                        <ul>
-                            <li>
-                                <a href="#" className="accordionItem">Products</a>
-                                <a href="#" className="accordionItem">Categories</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <button className="accordion">
-                        <img src="https://cdn-icons-png.flaticon.com/128/2976/2976215.png" alt=""
-                             className="accordionMenuIcon"/>
-                        &nbsp; Menu
-                    </button>
-                    <div className="panel">
-                        <ul>
-                            <li>
-                                <a href="#" className="accordionItem">Products</a>
-                                <a href="#" className="accordionItem">Categories</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <button className="accordion">
-                        <img src="https://cdn-icons-png.flaticon.com/128/2976/2976215.png" alt=""
-                             className="accordionMenuIcon"/>
-                        &nbsp; Menu
-                    </button>
-                    <div className="panel">
-                        <ul>
-                            <li>
-                                <a href="#" className="accordionItem">Products</a>
-                                <a href="#" className="accordionItem">Categories</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <button className="accordion">
-                        <img src="https://cdn-icons-png.flaticon.com/128/2976/2976215.png" alt=""
-                             className="accordionMenuIcon"/>
-                        &nbsp; Menu
-                    </button>
-                    <div className="panel">
-                        <ul>
-                            <li>
-                                <a href="#" className="accordionItem">Products</a>
-                                <a href="#" className="accordionItem">Categories</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <button className="accordion">
-                        <img src="https://cdn-icons-png.flaticon.com/128/2976/2976215.png" alt=""
-                             className="accordionMenuIcon"/>
-                        &nbsp; Menu
-                    </button>
-                    <div className="panel">
-                        <ul>
-                            <li>
-                                <a href="#" className="accordionItem">Products</a>
-                                <a href="#" className="accordionItem">Categories</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <button className="accordion">
-                        <img src="https://cdn-icons-png.flaticon.com/128/2976/2976215.png" alt=""
-                             className="accordionMenuIcon"/>
-                        &nbsp; Menu
-                    </button>
-                    <div className="panel">
-                        <ul>
-                            <li>
-                                <a href="#" className="accordionItem">Products</a>
-                                <a href="#" className="accordionItem">Categories</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <button className="accordion">
-                        <img src="https://cdn-icons-png.flaticon.com/128/2976/2976215.png" alt=""
-                             className="accordionMenuIcon"/>
-                        &nbsp; Menu
-                    </button>
-                    <div className="panel">
-                        <ul>
-                            <li>
-                                <a href="#" className="accordionItem">Products</a>
-                                <a href="#" className="accordionItem">Categories</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <button className="accordion">
-                        <img src="https://cdn-icons-png.flaticon.com/128/2976/2976215.png" alt=""
-                             className="accordionMenuIcon"/>
-                        &nbsp; Menu
-                    </button>
-                    <div className="panel">
-                        <ul>
-                            <li>
-                                <a href="#" className="accordionItem">Products</a>
-                                <a href="#" className="accordionItem">Categories</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <button className="accordion">
-                        <img src="https://cdn-icons-png.flaticon.com/128/2976/2976215.png" alt=""
-                             className="accordionMenuIcon"/>
-                        &nbsp; Menu
-                    </button>
-                    <div className="panel">
-                        <ul>
-                            <li>
-                                <a href="#" className="accordionItem">Products</a>
-                                <a href="#" className="accordionItem">Categories</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <button className="accordion">
-                        <img src="https://cdn-icons-png.flaticon.com/128/2976/2976215.png" alt=""
-                             className="accordionMenuIcon"/>
-                        &nbsp; Menu
-                    </button>
-                    <div className="panel">
-                        <ul>
-                            <li>
-                                <a href="#" className="accordionItem">Products</a>
-                                <a href="#" className="accordionItem">Categories</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <button className="accordion">
-                        <img src="https://cdn-icons-png.flaticon.com/128/2976/2976215.png" alt=""
-                             className="accordionMenuIcon"/>
-                        &nbsp; Menu
-                    </button>
-                    <div className="panel">
-                        <ul>
-                            <li>
-                                <a href="#" className="accordionItem">Products</a>
-                                <a href="#" className="accordionItem">Categories</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <button className="accordion">
-                        <img src="https://cdn-icons-png.flaticon.com/128/2976/2976215.png" alt=""
-                             className="accordionMenuIcon"/>
-                        &nbsp; Menu
-                    </button>
-                    <div className="panel">
-                        <ul>
-                            <li>
-                                <a href="#" className="accordionItem">Products</a>
-                                <a href="#" className="accordionItem">Categories</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <button className="accordion">
-                        <img src="https://cdn-icons-png.flaticon.com/128/2976/2976215.png" alt=""
-                             className="accordionMenuIcon"/>
-                        &nbsp; Menu
-                    </button>
-                    <div className="panel">
-                        <ul>
-                            <li>
-                                <a href="#" className="accordionItem">Products</a>
-                                <a href="#" className="accordionItem">Categories</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <button className="accordion">
-                        <img src="https://cdn-icons-png.flaticon.com/128/2976/2976215.png" alt=""
-                             className="accordionMenuIcon"/>
-                        &nbsp; Menu
-                    </button>
-                    <div className="panel">
-                        <ul>
-                            <li>
-                                <a href="#" className="accordionItem">Products</a>
-                                <a href="#" className="accordionItem">Categories</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <Navbar expand="lg" className="bg-body-tertiary">
+                <Container>
+                    <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="me-auto">
+                            <Nav.Link href="#home">Home</Nav.Link>
+                            <Nav.Link href="#link">Link</Nav.Link>
+                            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.2">
+                                    Another action
+                                </NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item href="#action/3.4">
+                                    Separated link
+                                </NavDropdown.Item>
+                            </NavDropdown>
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
         )
     }
 }
