@@ -12,8 +12,8 @@ class HomePage extends Component {
                 <HomeTop />
                 <FeaturedProducts />
                 <NewArrival />
-                <Collection />
                 <Categories />
+                <Collection />
             </Fragment>
         )
     }

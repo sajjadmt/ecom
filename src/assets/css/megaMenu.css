@@ -14,21 +14,25 @@
     overflow: paged-y;
     box-shadow: 0 0 2px 0 rgba(57, 78, 234, 0.1)
 }
+
 .active, .accordion:hover {
     color: #ffffff;
     font-weight: 400;
     background-color: #051b35;
 }
+
 .accordion:after {
     content: '\276F';
     color: #c2c2c2;
     float: right;
     margin-left: 5px;
 }
-.active:after,hover {
+
+.active:after, hover {
     color: #ffffff;
     content: "\276E";
 }
+
 .panel {
     padding: 0 10px;
     background-color: white;
@@ -36,9 +40,10 @@
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
-.accordionMenuDiv{
+
+.accordionMenuDiv {
     width: 100%;
-    direction:rtl;
+    direction: rtl;
     font-family: 'Roboto Condensed', sans-serif !important;
     font-weight: 300 !important;
     height: 380px;
@@ -49,7 +54,7 @@
 }
 
 .accordionMenuDiv::-webkit-scrollbar {
-    width:10px !important;
+    width: 10px !important;
 }
 
 .accordionMenuDiv::-webkit-scrollbar-thumb {
@@ -61,21 +66,24 @@
 }
 
 .accordionMenuDiv::-webkit-scrollbar-track {
-    background: #F4F4F4!important;
+    background: #F4F4F4 !important;
 }
 
 
-.accordionMenuDivInside{
-    direction:ltr;
+.accordionMenuDivInside {
+    direction: ltr;
 }
-.accordionMenuIcon{
+
+.accordionMenuIcon {
     width: 20px;
     height: auto;
 }
-.accordionItem{
+
+.accordionItem {
     color: #444;
     text-decoration: none;
 }
-.accordionItem:hover{
+
+.accordionItem:hover {
     text-decoration: none;
 }
