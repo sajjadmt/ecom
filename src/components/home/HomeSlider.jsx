@@ -48,7 +48,7 @@ class HomeSlider extends Component {
         };
         return (
             <Fragment>
-                <Container className="text-center" fluid={true}>
+                <Container className="p-0 m-0 overflow-hidden" fluid={true}>
                     <Row>
                         <Slider ref={c => (this.slider = c)} {...settings}>
                             <div>

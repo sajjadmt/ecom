@@ -53,7 +53,9 @@ class MegaMenu extends Component {
                         <ul>
                             <li>
                                 <a href="#" className="accordionItem">Tshirt</a>
-                                <a href="#" className="accordionItem">Tshirt</a>
+                            </li>
+                            <li>
+                                <a href="#" className="accordionItem">Pant</a>
                             </li>
                         </ul>
                     </div>
@@ -66,7 +68,9 @@ class MegaMenu extends Component {
                         <ul>
                             <li>
                                 <a href="#" className="accordionItem">Tshirt</a>
-                                <a href="#" className="accordionItem">Tshirt</a>
+                            </li>
+                            <li>
+                                <a href="#" className="accordionItem">Pant</a>
                             </li>
                         </ul>
                     </div>
@@ -79,7 +83,9 @@ class MegaMenu extends Component {
                         <ul>
                             <li>
                                 <a href="#" className="accordionItem">Tshirt</a>
-                                <a href="#" className="accordionItem">Tshirt</a>
+                            </li>
+                            <li>
+                                <a href="#" className="accordionItem">Pant</a>
                             </li>
                         </ul>
                     </div>
@@ -92,7 +98,9 @@ class MegaMenu extends Component {
                         <ul>
                             <li>
                                 <a href="#" className="accordionItem">Tshirt</a>
-                                <a href="#" className="accordionItem">Tshirt</a>
+                            </li>
+                            <li>
+                                <a href="#" className="accordionItem">Pant</a>
                             </li>
                         </ul>
                     </div>
@@ -105,7 +113,9 @@ class MegaMenu extends Component {
                         <ul>
                             <li>
                                 <a href="#" className="accordionItem">Tshirt</a>
-                                <a href="#" className="accordionItem">Tshirt</a>
+                            </li>
+                            <li>
+                                <a href="#" className="accordionItem">Pant</a>
                             </li>
                         </ul>
                     </div>
@@ -118,7 +128,9 @@ class MegaMenu extends Component {
                         <ul>
                             <li>
                                 <a href="#" className="accordionItem">Tshirt</a>
-                                <a href="#" className="accordionItem">Tshirt</a>
+                            </li>
+                            <li>
+                                <a href="#" className="accordionItem">Pant</a>
                             </li>
                         </ul>
                     </div>
@@ -131,7 +143,9 @@ class MegaMenu extends Component {
                         <ul>
                             <li>
                                 <a href="#" className="accordionItem">Tshirt</a>
-                                <a href="#" className="accordionItem">Tshirt</a>
+                            </li>
+                            <li>
+                                <a href="#" className="accordionItem">Pant</a>
                             </li>
                         </ul>
                     </div>
@@ -144,7 +158,9 @@ class MegaMenu extends Component {
                         <ul>
                             <li>
                                 <a href="#" className="accordionItem">Tshirt</a>
-                                <a href="#" className="accordionItem">Tshirt</a>
+                            </li>
+                            <li>
+                                <a href="#" className="accordionItem">Pant</a>
                             </li>
                         </ul>
                     </div>
@@ -157,7 +173,9 @@ class MegaMenu extends Component {
                         <ul>
                             <li>
                                 <a href="#" className="accordionItem">Tshirt</a>
-                                <a href="#" className="accordionItem">Tshirt</a>
+                            </li>
+                            <li>
+                                <a href="#" className="accordionItem">Pant</a>
                             </li>
                         </ul>
                     </div>
@@ -170,7 +188,9 @@ class MegaMenu extends Component {
                         <ul>
                             <li>
                                 <a href="#" className="accordionItem">Tshirt</a>
-                                <a href="#" className="accordionItem">Tshirt</a>
+                            </li>
+                            <li>
+                                <a href="#" className="accordionItem">Pant</a>
                             </li>
                         </ul>
                     </div>
@@ -183,7 +203,9 @@ class MegaMenu extends Component {
                         <ul>
                             <li>
                                 <a href="#" className="accordionItem">Tshirt</a>
-                                <a href="#" className="accordionItem">Tshirt</a>
+                            </li>
+                            <li>
+                                <a href="#" className="accordionItem">Pant</a>
                             </li>
                         </ul>
                     </div>
@@ -196,7 +218,9 @@ class MegaMenu extends Component {
                         <ul>
                             <li>
                                 <a href="#" className="accordionItem">Tshirt</a>
-                                <a href="#" className="accordionItem">Tshirt</a>
+                            </li>
+                            <li>
+                                <a href="#" className="accordionItem">Pant</a>
                             </li>
                         </ul>
                     </div>
@@ -209,7 +233,9 @@ class MegaMenu extends Component {
                         <ul>
                             <li>
                                 <a href="#" className="accordionItem">Tshirt</a>
-                                <a href="#" className="accordionItem">Tshirt</a>
+                            </li>
+                            <li>
+                                <a href="#" className="accordionItem">Pant</a>
                             </li>
                         </ul>
                     </div>
@@ -222,7 +248,9 @@ class MegaMenu extends Component {
                         <ul>
                             <li>
                                 <a href="#" className="accordionItem">Tshirt</a>
-                                <a href="#" className="accordionItem">Tshirt</a>
+                            </li>
+                            <li>
+                                <a href="#" className="accordionItem">Pant</a>
                             </li>
                         </ul>
                     </div>
