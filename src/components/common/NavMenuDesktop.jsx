@@ -7,7 +7,7 @@ class NavMenuDesktop extends Component {
     render() {
         return (
             <Fragment>
-            <div className="TopSectionDown">
+                <div className="TopSectionDown">
                     <Navbar fixed={"top"} bg="light" className="navbar">
                         <Container fluid={true} className="fixed-top shadow-sm p-2 mb-0 bg-white">
                             <Row>
@@ -41,12 +41,12 @@ class NavMenuDesktop extends Component {
                                         LOGIN
                                     </Link>
                                     <Button className="cart-btn">
-                                        <i className="fa fa-shopping-cart"></i> 3</Button>
+                                        <i className="fa fa-shopping-cart"></i> 3 Items</Button>
                                 </Col>
                             </Row>
                         </Container>
                     </Navbar>
-            </div>
+                </div>
             </Fragment>
         )
     }
