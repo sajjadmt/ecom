@@ -38,13 +38,13 @@ class FooterDesktop extends Component {
                                 <h5 className="footer-menu-title">THE COMPANY</h5>
                                 <Link to="/" className="footer-link"> About Us</Link><br/>
                                 <Link to="/" className="footer-link"> Company Profile</Link><br/>
-                                <Link to="/" className="footer-link"> Contact Us</Link>
+                                <Link to="/contact" className="footer-link"> Contact Us</Link>
                             </Col>
                             <Col className="p-2" lg={3} md={3} sm={6} xs={12}>
                                 <h5 className="footer-menu-title">MORE INFO</h5>
-                                <Link to="/" className="footer-link"> How To Purchase?</Link><br/>
-                                <Link to="/" className="footer-link"> Privacy Policy</Link><br/>
-                                <Link to="/" className="footer-link"> Refund Policy</Link>
+                                <Link to="/purchase" className="footer-link"> How To Purchase?</Link><br/>
+                                <Link to="/privacy" className="footer-link"> Privacy Policy</Link><br/>
+                                <Link to="/refund" className="footer-link"> Refund Policy</Link>
                             </Col>
                             <Col className="p-2" lg={3} md={3} sm={6} xs={12}>
                                 <h5 className="footer-menu-title">DOWNLOAD APPS</h5>
