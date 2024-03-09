@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react'
-import {Route, Switch} from "react-router";
+import {Route, Switch} from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import UserLoginPage from "../pages/UserLoginPage";
 import ContactPage from "../pages/ContactPage";
@@ -8,6 +8,7 @@ import PrivacyPage from "../pages/PrivacyPage";
 import RefundPage from "../pages/RefundPage";
 import ProductDetailsPage from "../pages/ProductDetailsPage";
 import NotificationPage from "../pages/NotificationPage";
+import FavouritePage from "../pages/FavouritePage";
 
 class AppRoute extends Component {
     render() {
@@ -22,6 +23,7 @@ class AppRoute extends Component {
                     <Route exact path="/refund" component={RefundPage}/>
                     <Route exact path="/product-details" component={ProductDetailsPage}/>
                     <Route exact path="/notifications" component={NotificationPage}/>
+                    <Route exact path="/favourite" component={FavouritePage}/>
                 </Switch>
             </Fragment>
         )
