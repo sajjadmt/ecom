@@ -1,40 +1,23 @@
 import React, {Component, Fragment} from 'react'
 import {Card, Col, Container, Row} from "react-bootstrap";
-import axios from "axios";
-import AppURL from "../../api/AppURL";
 
-class Collection extends Component {
-
-    constructor() {
-        super();
-        this.state = {
-            collectionList: []
-        }
-    }
-
-    componentDidMount() {
-        axios.get(AppURL.ProductListByRemark('collection')).then((response) => {
-            this.setState({
-                collectionList: response.data
-            });
-        }).catch();
-    }
-
+class Category extends Component {
     render() {
-        const collectionList = this.state.collectionList;
-        const collectionView = collectionList.map((collectionList,i)=>{
-            if (collectionList.special_price == ""){
+        const categoryList = this.props.productData;
+        const category = this.props.Category;
+        const categoryView = categoryList.map((categoryList,i)=>{
+            if (categoryList.special_price == ""){
                 return <Col className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
                     <Card className="image-box card w-100">
                         <img className="center w-75"
-                             src={collectionList.image}
+                             src={categoryList.image}
                              alt=""/>
                         <Card.Body>
                             <p className="product-name-on-card">
-                                {collectionList.title}
+                                {categoryList.title}
                             </p>
                             <p className="product-price-on-card">
-                                Price : ${collectionList.price}
+                                Price : ${categoryList.price}
                             </p>
                         </Card.Body>
                     </Card>
@@ -43,14 +26,14 @@ class Collection extends Component {
                 return <Col className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
                     <Card className="image-box card w-100">
                         <img className="center w-75"
-                             src={collectionList.image}
+                             src={categoryList.image}
                              alt=""/>
                         <Card.Body>
                             <p className="product-name-on-card">
-                                {collectionList.title}
+                                {categoryList.title}
                             </p>
                             <p className="product-price-on-card">
-                                Price : <strike className="text-secondary">${collectionList.price}</strike> ${collectionList.special_price}
+                                Price : <strike className="text-secondary">${categoryList.price}</strike> ${categoryList.special_price}
                             </p>
                         </Card.Body>
                     </Card>
@@ -59,17 +42,16 @@ class Collection extends Component {
         })
         return (
             <Fragment>
+                <br/>
                 <Container className="text-center" fluid={true}>
                     <div className="section-title text-center mb-55">
                         <h2>
-                            COLLECTION
+                            {category}
                         </h2>
-                        <p>
-                            Collection That You May Like
-                        </p>
                     </div>
+                    <br/>
                     <Row>
-                        {collectionView}
+                        {categoryView}
                     </Row>
                 </Container>
             </Fragment>
@@ -77,4 +59,4 @@ class Collection extends Component {
     }
 }
 
-export default Collection
+export default Category

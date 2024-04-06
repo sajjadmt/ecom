@@ -15,6 +15,8 @@
 @import "common.css";
 @import "productDetails.css";
 @import "notification.css";
+@import "cartList.css";
+@import "placeholder-loading.min.css";
 
 body{
     background-color: #ffffff;

@@ -1,9 +1,23 @@
 import React, {Component} from 'react'
+import axios from "axios";
+import AppURL from "../../api/AppURL";
 
 class MegaMenuMobile extends Component {
 
+    constructor() {
+        super();
+        this.state = {
+            menuData: [],
+        }
+    }
+
     componentDidMount() {
         this.addEventListeners();
+        axios.get(AppURL.AllCategoryDetails).then((response) => {
+            this.setState({
+                menuData: response.data,
+            });
+        }).catch();
     }
 
     addEventListeners() {
@@ -39,99 +53,33 @@ class MegaMenuMobile extends Component {
     };
 
     render() {
+
+        const categoryList = this.state.menuData;
+        const megaMenuMobileView = categoryList.map((categoryList, i) => {
+            return <div key={i.toString()}>
+                <button onClick={this.handleAccordionClick} className="accordionMobile">
+                    <img src={categoryList.category_image} alt=""
+                         className="accordionMenuIconMobile"/> &nbsp;
+                    {categoryList.category_name}
+                </button>
+                <div className="panelMobile">
+                    <ul>
+                        {
+                            (categoryList.sub_category_name).map((subCategoryList, i) => {
+                                return <li><a href="#"
+                                              className="accordionItemMobile">{subCategoryList.sub_category_name}</a>
+                                </li>
+                            })
+                        }
+                    </ul>
+                </div>
+            </div>
+        });
+
         return (
             <div className="accordionMenuDivMobile">
                 <div className="accordionMenuDivInsideMobile">
-                    <button className="accordionMobile">
-                        <img src="https://cdn-icons-png.flaticon.com/128/9679/9679540.png" alt=""
-                             className="accordionMenuIconMobile"/> &nbsp;
-                        Men's Clothing
-                    </button>
-                    <div className="panelMobile">
-                        <ul>
-                            <li>
-                                <a href="#" className="accordionItemMobile">Tshirt</a>
-                            </li>
-                            <li>
-                                <a href="#" className="accordionItemMobile">Pant</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <button className="accordionMobile">
-                        <img src="https://cdn-icons-png.flaticon.com/128/9679/9679540.png" alt=""
-                             className="accordionMenuIconMobile"/> &nbsp;
-                        Men's Clothing
-                    </button>
-                    <div className="panelMobile">
-                        <ul>
-                            <li>
-                                <a href="#" className="accordionItemMobile">Tshirt</a>
-                            </li>
-                            <li>
-                                <a href="#" className="accordionItemMobile">Pant</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <button className="accordionMobile">
-                        <img src="https://cdn-icons-png.flaticon.com/128/9679/9679540.png" alt=""
-                             className="accordionMenuIconMobile"/> &nbsp;
-                        Men's Clothing
-                    </button>
-                    <div className="panelMobile">
-                        <ul>
-                            <li>
-                                <a href="#" className="accordionItemMobile">Tshirt</a>
-                            </li>
-                            <li>
-                                <a href="#" className="accordionItemMobile">Pant</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <button className="accordionMobile">
-                        <img src="https://cdn-icons-png.flaticon.com/128/9679/9679540.png" alt=""
-                             className="accordionMenuIconMobile"/> &nbsp;
-                        Men's Clothing
-                    </button>
-                    <div className="panelMobile">
-                        <ul>
-                            <li>
-                                <a href="#" className="accordionItemMobile">Tshirt</a>
-                            </li>
-                            <li>
-                                <a href="#" className="accordionItemMobile">Pant</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <button className="accordionMobile">
-                        <img src="https://cdn-icons-png.flaticon.com/128/9679/9679540.png" alt=""
-                             className="accordionMenuIconMobile"/> &nbsp;
-                        Men's Clothing
-                    </button>
-                    <div className="panelMobile">
-                        <ul>
-                            <li>
-                                <a href="#" className="accordionItemMobile">Tshirt</a>
-                            </li>
-                            <li>
-                                <a href="#" className="accordionItemMobile">Pant</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <button className="accordionMobile">
-                        <img src="https://cdn-icons-png.flaticon.com/128/9679/9679540.png" alt=""
-                             className="accordionMenuIconMobile"/> &nbsp;
-                        Men's Clothing
-                    </button>
-                    <div className="panelMobile">
-                        <ul>
-                            <li>
-                                <a href="#" className="accordionItemMobile">Tshirt</a>
-                            </li>
-                            <li>
-                                <a href="#" className="accordionItemMobile">Pant</a>
-                            </li>
-                        </ul>
-                    </div>
+                    {megaMenuMobileView}
                 </div>
             </div>
         )

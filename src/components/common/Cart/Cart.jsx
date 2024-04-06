@@ -19,7 +19,7 @@ class Cart extends Component {
                                 <Card.Body>
                                     <Row>
                                         <Col md={3} lg={3} sm={6} xs={6}>
-                                            <img className="w-100 h-100" src={Product1}/>
+                                            <img className="cart-product-img" src={Product1}/>
                                         </Col>
                                         <Col md={6} lg={6} sm={6} xs={6}>
                                             <h5 className="product-name">ASUS TUF A15 FA506IU Ryzen 7 4800H GTX</h5>
@@ -40,7 +40,7 @@ class Cart extends Component {
                                 <Card.Body>
                                     <Row>
                                         <Col md={3} lg={3} sm={6} xs={6}>
-                                            <img className="w-100 h-100" src={Product2}/>
+                                            <img className="cart-product-img" src={Product2}/>
                                         </Col>
                                         <Col md={6} lg={6} sm={6} xs={6}>
                                             <h5 className="product-name">ASUS TUF A15 FA506IU Ryzen 7 4800H GTX</h5>
@@ -61,7 +61,7 @@ class Cart extends Component {
                                 <Card.Body>
                                     <Row>
                                         <Col md={3} lg={3} sm={6} xs={6}>
-                                            <img className="w-100 h-100" src={Product3}/>
+                                            <img className="cart-product-img" src={Product3}/>
                                         </Col>
                                         <Col md={6} lg={6} sm={6} xs={6}>
                                             <h5 className="product-name">ASUS TUF A15 FA506IU Ryzen 7 4800H GTX</h5>
@@ -82,7 +82,8 @@ class Cart extends Component {
                                 <Card.Body>
                                     <Row>
                                         <Col md={3} lg={3} sm={6} xs={6}>
-                                            <img className="w-100 h-100" src={Product4}/>
+                                            <img className="cart-product-img"
+                                                 src="https://rukminim2.flixcart.com/image/416/416/ktketu80/mobile/6/n/d/iphone-13-mlpg3hn-a-apple-original-imag6vpyghayhhrh.jpeg?q=70&crop=false"/>
                                         </Col>
                                         <Col md={6} lg={6} sm={6} xs={6}>
                                             <h5 className="product-name">ASUS TUF A15 FA506IU Ryzen 7 4800H GTX</h5>
@@ -93,6 +94,20 @@ class Cart extends Component {
                                             <input placeholder="1" className="form-control text-center" type="number"/>
                                             <Button className="btn btn-block w-100 mt-3  site-btn"><i
                                                 className="fa fa-trash-alt"></i> Remove </Button>
+                                        </Col>
+                                    </Row>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <Col className="p-1" lg={12} md={12} sm={12} xs={12}>
+                            <Card>
+                                <Card.Body>
+                                    <Row>
+                                        <Col md={4} lg={4} sm={6} xs={6}>
+                                            <h5> Total Items = 05 </h5>
+                                            <h5>Total Price = 5000$</h5>
+                                            <Button className="btn btn-block w-100 mt-3  site-btn"><i
+                                                className="fa fa-shopping-cart"></i> CheckOut </Button>
                                         </Col>
                                     </Row>
                                 </Card.Body>

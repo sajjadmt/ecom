@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react'
+import React, {Component} from 'react'
 import {Route, Switch} from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import UserLoginPage from "../pages/UserLoginPage";
@@ -10,11 +10,12 @@ import ProductDetailsPage from "../pages/ProductDetailsPage";
 import NotificationPage from "../pages/NotificationPage";
 import FavouritePage from "../pages/FavouritePage";
 import CartPage from "../pages/CartPage";
+import AboutPage from "../pages/AboutPage";
+import ProductCategoryPage from "../pages/ProductCategoryPage";
 
 class AppRoute extends Component {
     render() {
         return (
-            <Fragment>
                 <Switch>
                     <Route exact path="/" component={HomePage}/>
                     <Route exact path="/login" component={UserLoginPage}/>
@@ -26,8 +27,9 @@ class AppRoute extends Component {
                     <Route exact path="/notifications" component={NotificationPage}/>
                     <Route exact path="/favourite" component={FavouritePage}/>
                     <Route exact path="/cart" component={CartPage}/>
+                    <Route exact path="/about" component={AboutPage}/>
+                    <Route exact path="/product-category/:Category" component={ProductCategoryPage}/>
                 </Switch>
-            </Fragment>
         )
     }
 }

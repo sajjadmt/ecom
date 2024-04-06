@@ -1,9 +1,23 @@
 import React, {Component} from 'react'
+import axios from "axios";
+import AppURL from "../../api/AppURL";
 
 class MegaMenuAll extends Component {
 
+    constructor() {
+        super();
+        this.state = {
+            menuData: []
+        }
+    }
+
     componentDidMount() {
         this.addEventListeners();
+        axios.get(AppURL.AllCategoryDetails).then((response) => {
+            this.setState({
+                menuData: response.data,
+            });
+        }).catch();
     }
 
     addEventListeners() {
@@ -39,24 +53,31 @@ class MegaMenuAll extends Component {
     };
 
     render() {
+
+        const categoryList = this.state.menuData;
+        const megaMenuView = categoryList.map((categoryList, i) => {
+            return <div key={i.toString()}>
+                <button onClick={this.handleAccordionClick} className="accordion">
+                    <img src={categoryList.category_image} alt=""
+                         className="accordionMenuIcon"/> &nbsp;
+                    {categoryList.category_name}
+                </button>
+                <div className="panel">
+                    <ul>
+                        {
+                            (categoryList.sub_category_name).map((subCategoryList , i)=>{
+                                return <li><a href="#" className="accordionItem">{subCategoryList.sub_category_name}</a></li>
+                            })
+                        }
+                    </ul>
+                </div>
+            </div>
+        });
+
         return (
             <div className="accordionMenuDivAll">
                 <div className="accordionMenuDivInsideAll">
-                    <button className="accordionAll">
-                        <img src="https://cdn-icons-png.flaticon.com/128/9679/9679540.png" alt=""
-                             className="accordionMenuIconAll"/> &nbsp;
-                        Men's Clothing
-                    </button>
-                    <div className="panelAll">
-                        <ul>
-                            <li>
-                                <a href="#" className="accordionItemAll">Tshirt</a>
-                            </li>
-                            <li>
-                                <a href="#" className="accordionItemAll">Pant</a>
-                            </li>
-                        </ul>
-                    </div>
+                    {megaMenuView}
                 </div>
             </div>
         )

@@ -1,33 +1,33 @@
 import React, {Component, Fragment} from 'react'
 import {Col, Container, Row} from "react-bootstrap";
-import ReactHtmlParser from 'react-html-parser';
 import axios from "axios";
 import AppURL from "../../api/AppURL";
+import ReactHtmlParser from 'react-html-parser';
 
-class Refund extends Component {
+class About extends Component {
 
     constructor() {
         super();
         this.state = {
-            refund: '',
+            about: '',
         }
     }
 
     componentDidMount() {
-        let RefundInfoSession = sessionStorage.getItem("RefundInfo");
-        if (RefundInfoSession == null) {
+        let AboutInfoSession = sessionStorage.getItem("AboutInfo");
+        if (AboutInfoSession == null) {
             axios.get(AppURL.AllSiteInfo).then((response) => {
                 if (response.status === 200) {
-                    let refund = (response.data)[0]['refund'];
+                    let about = (response.data)[0]['about'];
                     this.setState({
-                        refund: refund,
+                        about: about,
                     });
-                    sessionStorage.setItem("RefundInfo", refund);
+                    sessionStorage.setItem("AboutInfo", about);
                 }
-            }).catch()
+            }).catch();
         } else {
             this.setState({
-                refund: RefundInfoSession
+                about: AboutInfoSession
             });
         }
     }
@@ -38,7 +38,7 @@ class Refund extends Component {
                 <Container>
                     <Row className="p-2">
                         <Col className="shadow-sm mt-2 bg-white" lg={12} md={12} sm={12} xs={12}>
-                                {ReactHtmlParser(this.state.refund)}
+                            {ReactHtmlParser(this.state.about)}
                         </Col>
                     </Row>
                 </Container>
@@ -47,4 +47,4 @@ class Refund extends Component {
     }
 }
 
-export default Refund
+export default About
