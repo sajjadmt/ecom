@@ -10,7 +10,8 @@ class HomeTop extends Component {
     constructor(props) {
         super();
         this.state = {
-            menuData: []
+            menuData: [],
+            sliderData: [],
         }
     }
 
@@ -18,6 +19,11 @@ class HomeTop extends Component {
         axios.get(AppURL.AllCategoryDetails).then((response) => {
             this.setState({
                 menuData: response.data,
+            });
+        }).catch();
+        axios.get(AppURL.AllSlider).then((response) => {
+            this.setState({
+                sliderData: response.data,
             });
         }).catch();
     }
@@ -28,10 +34,10 @@ class HomeTop extends Component {
                 <Container className="p-0 m-0 overflow-hidden" fluid={true}>
                     <Row>
                         <Col lg={3} md={3} sm={12}>
-                            <MegaMenu data={this.state.menuData} />
+                            <MegaMenu data={this.state.menuData}/>
                         </Col>
                         <Col lg={9} md={9} sm={12}>
-                            <HomeSlider />
+                            <HomeSlider data={this.state.sliderData}/>
                         </Col>
                     </Row>
                 </Container>
