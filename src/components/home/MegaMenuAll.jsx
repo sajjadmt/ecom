@@ -66,7 +66,7 @@ class MegaMenuAll extends Component {
                     <ul>
                         {
                             (categoryList.sub_category_name).map((subCategoryList , i)=>{
-                                return <li><a href="#" className="accordionItem">{subCategoryList.sub_category_name}</a></li>
+                                return <li key={i.toString()}><a href="#" className="accordionItem">{subCategoryList.sub_category_name}</a></li>
                             })
                         }
                     </ul>
