@@ -3,20 +3,25 @@ import {Card, Col, Container, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import AppURL from "../../api/AppURL";
+import FeaturedProductsLoading from "../common/PlaceHolder/FeaturedProductsLoading";
 
 class FeaturedProducts extends Component {
 
-    constructor() {
+    constructor(props) {
         super();
         this.state = {
             productList: [],
+            isLoading: '',
+            mainDiv: 'd-none'
         }
     }
 
     componentDidMount() {
         axios.get(AppURL.ProductListByRemark('featured')).then((response) => {
             this.setState({
-                productList: response.data
+                productList: response.data,
+                isLoading: 'd-none',
+                mainDiv: '',
             });
         }).catch();
     }
@@ -54,7 +59,8 @@ class FeaturedProducts extends Component {
                                     {featuredList.title}
                                 </p>
                                 <p className="product-price-on-card" id="price">
-                                    Price : <strike className="text-secondary">${featuredList.price}</strike> ${featuredList.special_price}
+                                    Price : <strike
+                                    className="text-secondary">${featuredList.price}</strike> ${featuredList.special_price}
                                 </p>
                             </Card.Body>
                         </Card>
@@ -64,19 +70,22 @@ class FeaturedProducts extends Component {
         });
         return (
             <Fragment>
-                <Container className="text-center" fluid={true}>
-                    <div className="section-title text-center mb-55">
-                        <h2>
-                            FEATURED PRODUCTS
-                        </h2>
-                        <p>
-                            Products That You May Like
-                        </p>
-                    </div>
-                    <Row>
-                        {featuredView}
-                    </Row>
-                </Container>
+                <FeaturedProductsLoading isLoading={this.state.isLoading}/>
+                <div className={this.state.mainDiv}>
+                    <Container className="text-center" fluid={true}>
+                        <div className="section-title text-center mb-55">
+                            <h2>
+                                FEATURED PRODUCTS
+                            </h2>
+                            <p>
+                                Products That You May Like
+                            </p>
+                        </div>
+                        <Row>
+                            {featuredView}
+                        </Row>
+                    </Container>
+                </div>
             </Fragment>
         )
     }
