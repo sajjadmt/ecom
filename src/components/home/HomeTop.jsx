@@ -4,6 +4,7 @@ import MegaMenu from "./MegaMenu";
 import HomeSlider from "./HomeSlider";
 import axios from "axios";
 import AppURL from "../../api/AppURL";
+import HomeTopLoading from "../common/PlaceHolder/HomeTopLoading";
 
 class HomeTop extends Component {
 
@@ -12,6 +13,8 @@ class HomeTop extends Component {
         this.state = {
             menuData: [],
             sliderData: [],
+            isLoading: '',
+            mainDiv: 'd-none'
         }
     }
 
@@ -24,6 +27,8 @@ class HomeTop extends Component {
         axios.get(AppURL.AllSlider).then((response) => {
             this.setState({
                 sliderData: response.data,
+                isLoading: 'd-none',
+                mainDiv: '',
             });
         }).catch();
     }
@@ -31,6 +36,8 @@ class HomeTop extends Component {
     render() {
         return (
             <Fragment>
+                <HomeTopLoading isLoading={this.state.isLoading} />
+                <div className={this.state.mainDiv}>
                 <Container className="p-0 m-0 overflow-hidden" fluid={true}>
                     <Row>
                         <Col lg={3} md={3} sm={12}>
@@ -41,6 +48,7 @@ class HomeTop extends Component {
                         </Col>
                     </Row>
                 </Container>
+                </div>
             </Fragment>
         )
     }
