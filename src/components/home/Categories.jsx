@@ -3,20 +3,25 @@ import {Card, Col, Container, Row} from "react-bootstrap";
 import axios from "axios";
 import AppURL from "../../api/AppURL";
 import {Link} from "react-router-dom";
+import CategoryLoading from "../common/PlaceHolder/CategoryLoading";
 
 class Categories extends Component {
 
     constructor() {
         super();
         this.state = {
-            menuData: []
+            menuData: [],
+            isLoading: '',
+            mainDiv: 'd-none',
         }
     }
 
     componentDidMount() {
         axios.get(AppURL.AllCategoryDetails).then((response) => {
             this.setState({
-                menuData: response.data
+                menuData: response.data,
+                isLoading: 'd-none',
+                mainDiv: '',
             });
         }).catch();
     }
@@ -43,23 +48,26 @@ class Categories extends Component {
 
         return (
             <Fragment>
-                <Container className="text-center" fluid={true}>
-                    <div className="section-title text-center mb-55">
-                        <h2>
-                            CATEGORIES
-                        </h2>
-                        <p>
-                            Categories That You May Like
-                        </p>
-                    </div>
-                    <Row>
-                        <Col key={1} xxl={12} xl={12} lg={12} md={12} sm={12} xs={12}>
-                            <Row>
-                                {categoryView}
-                            </Row>
-                        </Col>
-                    </Row>
-                </Container>
+                <CategoryLoading isLoading={this.state.isLoading}/>
+                <div className={this.state.mainDiv}>
+                    <Container className="text-center" fluid={true}>
+                        <div className="section-title text-center mb-55">
+                            <h2>
+                                CATEGORIES
+                            </h2>
+                            <p>
+                                Categories That You May Like
+                            </p>
+                        </div>
+                        <Row>
+                            <Col key={1} xxl={12} xl={12} lg={12} md={12} sm={12} xs={12}>
+                                <Row>
+                                    {categoryView}
+                                </Row>
+                            </Col>
+                        </Row>
+                    </Container>
+                </div>
             </Fragment>
         )
     }
