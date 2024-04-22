@@ -2,28 +2,33 @@ import React, {Component, Fragment} from 'react'
 import {Card, Col, Container, Row} from "react-bootstrap";
 import axios from "axios";
 import AppURL from "../../api/AppURL";
+import CollectionLoading from "../common/PlaceHolder/CollectionLoading";
 
 class Collection extends Component {
 
     constructor() {
         super();
         this.state = {
-            collectionList: []
+            collectionList: [],
+            isLoading: '',
+            mainDiv: 'd-none',
         }
     }
 
     componentDidMount() {
         axios.get(AppURL.ProductListByRemark('collection')).then((response) => {
             this.setState({
-                collectionList: response.data
+                collectionList: response.data,
+                isLoading: 'd-none',
+                mainDiv: '',
             });
         }).catch();
     }
 
     render() {
         const collectionList = this.state.collectionList;
-        const collectionView = collectionList.map((collectionList,i)=>{
-            if (collectionList.special_price == ""){
+        const collectionView = collectionList.map((collectionList, i) => {
+            if (collectionList.special_price == "") {
                 return <Col className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
                     <Card className="image-box card w-100">
                         <img className="center w-75"
@@ -50,7 +55,8 @@ class Collection extends Component {
                                 {collectionList.title}
                             </p>
                             <p className="product-price-on-card">
-                                Price : <strike className="text-secondary">${collectionList.price}</strike> ${collectionList.special_price}
+                                Price : <strike
+                                className="text-secondary">${collectionList.price}</strike> ${collectionList.special_price}
                             </p>
                         </Card.Body>
                     </Card>
@@ -59,19 +65,22 @@ class Collection extends Component {
         })
         return (
             <Fragment>
-                <Container className="text-center" fluid={true}>
-                    <div className="section-title text-center mb-55">
-                        <h2>
-                            COLLECTION
-                        </h2>
-                        <p>
-                            Collection That You May Like
-                        </p>
-                    </div>
-                    <Row>
-                        {collectionView}
-                    </Row>
-                </Container>
+                <CollectionLoading isLoading={this.state.isLoading}/>
+                <div className={this.state.mainDiv}>
+                    <Container className="text-center" fluid={true}>
+                        <div className="section-title text-center mb-55">
+                            <h2>
+                                COLLECTION
+                            </h2>
+                            <p>
+                                Collection That You May Like
+                            </p>
+                        </div>
+                        <Row>
+                            {collectionView}
+                        </Row>
+                    </Container>
+                </div>
             </Fragment>
         )
     }
