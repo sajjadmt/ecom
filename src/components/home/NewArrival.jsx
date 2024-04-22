@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
 import AppURL from "../../api/AppURL";
+import NewArrivalLoading from "../common/PlaceHolder/NewArrivalLoading";
 
 
 class NewArrival extends Component {
@@ -15,6 +16,8 @@ class NewArrival extends Component {
         this.previous = this.previous.bind(this);
         this.state = {
             newProductList: [],
+            isLoading: '',
+            mainDiv: 'd-none',
         }
     }
 
@@ -22,6 +25,8 @@ class NewArrival extends Component {
         axios.get(AppURL.ProductListByRemark('new')).then((response) => {
             this.setState({
                 newProductList: response.data,
+                isLoading: 'd-none',
+                mainDiv: '',
             });
         }).catch();
     }
@@ -111,26 +116,29 @@ class NewArrival extends Component {
         })
         return (
             <Fragment>
-                <Container className="text-center" fluid={true}>
-                <div className="section-title text-center mb-55">
-                        <h2>
-                            NEW ARRIVAL &nbsp;
-                            <a className="btn btn-sm ml-2 site-btn" onClick={this.previous}><i
-                                className="fa fa-angle-left"></i></a>
-                            &nbsp;
-                            <a className="btn btn-sm ml-2 site-btn" onClick={this.next}><i
-                                className="fa fa-angle-right"></i></a>
-                        </h2>
-                        <p>
-                            New Arrival That You May Like
-                        </p>
-                    </div>
-                    <Row>
-                        <Slider ref={c => (this.slider = c)} {...settings}>
-                            {newProductView}
-                        </Slider>
-                    </Row>
-                </Container>
+                <NewArrivalLoading isLoading={this.state.isLoading}/>
+                <div className={this.state.mainDiv}>
+                    <Container className="text-center" fluid={true}>
+                        <div className="section-title text-center mb-55">
+                            <h2>
+                                NEW ARRIVAL &nbsp;
+                                <a className="btn btn-sm ml-2 site-btn" onClick={this.previous}><i
+                                    className="fa fa-angle-left"></i></a>
+                                &nbsp;
+                                <a className="btn btn-sm ml-2 site-btn" onClick={this.next}><i
+                                    className="fa fa-angle-right"></i></a>
+                            </h2>
+                            <p>
+                                New Arrival That You May Like
+                            </p>
+                        </div>
+                        <Row>
+                            <Slider ref={c => (this.slider = c)} {...settings}>
+                                {newProductView}
+                            </Slider>
+                        </Row>
+                    </Container>
+                </div>
             </Fragment>
         )
     }
