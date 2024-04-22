@@ -3,6 +3,7 @@ import {Col, Container, Row} from "react-bootstrap";
 import axios from "axios";
 import AppURL from "../../api/AppURL";
 import ReactHtmlParser from 'react-html-parser';
+import AboutLoading from "./PlaceHolder/AboutLoading";
 
 class About extends Component {
 
@@ -10,6 +11,8 @@ class About extends Component {
         super();
         this.state = {
             about: '',
+            isLoading: '',
+            mainDiv: 'd-none',
         }
     }
 
@@ -21,13 +24,17 @@ class About extends Component {
                     let about = (response.data)[0]['about'];
                     this.setState({
                         about: about,
+                        isLoading: 'd-none',
+                        mainDiv: '',
                     });
                     sessionStorage.setItem("AboutInfo", about);
                 }
             }).catch();
         } else {
             this.setState({
-                about: AboutInfoSession
+                about: AboutInfoSession,
+                isLoading: 'd-none',
+                mainDiv: '',
             });
         }
     }
@@ -35,13 +42,18 @@ class About extends Component {
     render() {
         return (
             <Fragment>
-                <Container>
-                    <Row className="p-2">
-                        <Col className="shadow-sm mt-2 bg-white" lg={12} md={12} sm={12} xs={12}>
-                            {ReactHtmlParser(this.state.about)}
-                        </Col>
-                    </Row>
-                </Container>
+                <AboutLoading isLoading={this.state.isLoading}/>
+                <div className={this.state.mainDiv}>
+                    <Container>
+                        <Row className="p-2">
+                            <Col className="shadow-sm mt-2 bg-white" lg={12} md={12} sm={12} xs={12}>
+                                <br/>
+                                <br/>
+                                {ReactHtmlParser(this.state.about)}
+                            </Col>
+                        </Row>
+                    </Container>
+                </div>
             </Fragment>
         )
     }
