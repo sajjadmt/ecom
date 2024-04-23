@@ -32,7 +32,9 @@ class Privacy extends Component {
             }).catch()
         } else {
             this.setState({
-                privacy: PrivacyInfoSession
+                privacy: PrivacyInfoSession,
+                isLoading: '',
+                mainDiv: 'd-none'
             });
         }
     }
