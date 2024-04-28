@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Container} from "react-bootstrap";
 
-class CollectionLoading extends Component {
+class AddressLoading extends Component {
     render() {
 
         let isLoading = this.props.isLoading;
@@ -97,4 +97,4 @@ class CollectionLoading extends Component {
     }
 }
 
-export default CollectionLoading;
+export default AddressLoading;

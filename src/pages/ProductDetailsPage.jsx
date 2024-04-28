@@ -5,10 +5,26 @@ import FooterDesktop from "../components/common/FooterDesktop";
 import FooterMobile from "../components/common/FooterMobile";
 import ProductDetails from "../components/common/ProductDetails/ProductDetails";
 import SuggestedProduct from "../components/common/ProductDetails/SuggestedProduct";
+import axios from "axios";
+import AppURL from "../api/AppURL";
 
 class ProductDetailsPage extends Component {
+
+    constructor({match}) {
+        super();
+        this.state = {
+            id: match.params.id,
+            ProductData: [],
+        }
+    }
+
     componentDidMount() {
         window.scroll(0, 0);
+        axios.get(AppURL.ProductDetails(this.state.id)).then((response) => {
+            this.setState({
+                ProductData: response.data
+            });
+        }).catch()
     }
 
     render() {
@@ -20,7 +36,7 @@ class ProductDetailsPage extends Component {
                 <div className="Mobile">
                     <NavMenuMobile/>
                 </div>
-                <ProductDetails/>
+                <ProductDetails Product={this.state.ProductData}/>
                 <SuggestedProduct/>
                 <div className="Desktop">
                     <FooterDesktop/>

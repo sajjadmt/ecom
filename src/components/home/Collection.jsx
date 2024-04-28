@@ -2,7 +2,8 @@ import React, {Component, Fragment} from 'react'
 import {Card, Col, Container, Row} from "react-bootstrap";
 import axios from "axios";
 import AppURL from "../../api/AppURL";
-import CollectionLoading from "../common/PlaceHolder/CollectionLoading";
+import AddressLoading from "../common/PlaceHolder/AddressLoading";
+import {Link} from "react-router-dom";
 
 class Collection extends Component {
 
@@ -30,6 +31,7 @@ class Collection extends Component {
         const collectionView = collectionList.map((collectionList, i) => {
             if (collectionList.special_price == "") {
                 return <Col className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
+                    <Link to={"/product-details/" + collectionList.id}>
                     <Card className="image-box card w-100">
                         <img className="center w-75"
                              src={collectionList.image}
@@ -43,9 +45,11 @@ class Collection extends Component {
                             </p>
                         </Card.Body>
                     </Card>
+                    </Link>
                 </Col>
             } else {
                 return <Col className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
+                    <Link to={"/product-details/" + collectionList.id}>
                     <Card className="image-box card w-100">
                         <img className="center w-75"
                              src={collectionList.image}
@@ -60,12 +64,13 @@ class Collection extends Component {
                             </p>
                         </Card.Body>
                     </Card>
+                    </Link>
                 </Col>
             }
         })
         return (
             <Fragment>
-                <CollectionLoading isLoading={this.state.isLoading}/>
+                <AddressLoading isLoading={this.state.isLoading}/>
                 <div className={this.state.mainDiv}>
                     <Container className="text-center" fluid={true}>
                         <div className="section-title text-center mb-55">

@@ -6,7 +6,13 @@ import Product3 from "../../../assets/images/product/product3.png";
 import Product4 from "../../../assets/images/product/product4.png";
 
 class ProductDetails extends Component {
+
     render() {
+
+        let product = this.props.Product.Product;
+        let productDetails = this.props.Product.Details;
+        console.log(product.id);
+
         return (
             <Fragment>
                 <Container className="BetweenTwoSection">
@@ -33,7 +39,7 @@ class ProductDetails extends Component {
                                     </Container>
                                 </Col>
                                 <Col className="p-3 " md={6} lg={6} sm={12} xs={12}>
-                                    <h5 className="Product-Name">ASUS TUF A15 FA506IU Ryzen 7 4800H GTX</h5>
+                                    <h5 className="Product-Name">Hello</h5>
                                     <h6 className="section-sub-title">Some Of Our Exclusive Collection, You May Like
                                         Some Of Our Exclusive Collection</h6>
                                     <div className="input-group">

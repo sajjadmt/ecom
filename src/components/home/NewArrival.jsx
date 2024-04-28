@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
+import {Link} from "react-router-dom";
 import AppURL from "../../api/AppURL";
 import NewArrivalLoading from "../common/PlaceHolder/NewArrivalLoading";
 
@@ -81,22 +82,25 @@ class NewArrival extends Component {
         const newProductView = newProductList.map((newProductList, i) => {
             if (newProductList.special_price == "") {
                 return <div key={i}>
-                    <Card className="image-box card w-100">
-                        <img className="center w-75"
-                             src={newProductList.image}
-                             alt=""/>
-                        <Card.Body>
-                            <p className="product-name-on-card">
-                                {newProductList.title}
-                            </p>
-                            <p className="product-price-on-card" id="price">
-                                Price : ${newProductList.price}
-                            </p>
-                        </Card.Body>
-                    </Card>
+                    <Link to={"/product-details/" + newProductList.id}>
+                        <Card className="image-box card w-100">
+                            <img className="center w-75"
+                                 src={newProductList.image}
+                                 alt=""/>
+                            <Card.Body>
+                                <p className="product-name-on-card">
+                                    {newProductList.title}
+                                </p>
+                                <p className="product-price-on-card" id="price">
+                                    Price : ${newProductList.price}
+                                </p>
+                            </Card.Body>
+                        </Card>
+                    </Link>
                 </div>
             } else {
                 return <div key={i}>
+                    <Link to={"/product-details/" + newProductList.id}>
                     <Card className="image-box card w-100">
                         <img className="center w-75"
                              src={newProductList.image}
@@ -111,6 +115,7 @@ class NewArrival extends Component {
                             </p>
                         </Card.Body>
                     </Card>
+                    </Link>
                 </div>
             }
         })
