@@ -4,7 +4,6 @@ import NavMenuMobile from "../components/common/NavMenuMobile";
 import FooterDesktop from "../components/common/FooterDesktop";
 import FooterMobile from "../components/common/FooterMobile";
 import ProductDetails from "../components/common/ProductDetails/ProductDetails";
-import SuggestedProduct from "../components/common/ProductDetails/SuggestedProduct";
 import axios from "axios";
 import AppURL from "../api/AppURL";
 
@@ -24,7 +23,9 @@ class ProductDetailsPage extends Component {
             this.setState({
                 ProductData: response.data
             });
-        }).catch()
+        }).catch(error => {
+            console.log(error)
+        })
     }
 
     render() {
@@ -37,7 +38,6 @@ class ProductDetailsPage extends Component {
                     <NavMenuMobile/>
                 </div>
                 <ProductDetails Product={this.state.ProductData}/>
-                <SuggestedProduct/>
                 <div className="Desktop">
                     <FooterDesktop/>
                 </div>
