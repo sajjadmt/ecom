@@ -86,7 +86,7 @@ class ProductDetails extends Component {
                                         <div className="input-group">
                                             <div className="Product-price-card d-inline text-danger">Reguler
                                                 Price <strike>{this.price}</strike></div>
-                                            <div className="Product-price-card d-inline text-bg-warning">New
+                                            <div className="Product-price-card d-inline text-info-emphasis">New
                                                 Price {this.specialPrice}</div>
                                         </div>
                                         <h6 className="mt-2">Category: <b
