@@ -5,6 +5,7 @@ class AppUrl {
     static AllSiteInfo = this.BaseURL + "/all-site-info";
     static AllCategoryDetails = this.BaseURL + "/all-category";
     static AllSlider = this.BaseURL + "/all-slider";
+    static AllNotification = this.BaseURL + "/notifications";
 
     static ProductListByRemark(Remark) {
         return this.BaseURL + "/product-list-by-remark/" + Remark;
