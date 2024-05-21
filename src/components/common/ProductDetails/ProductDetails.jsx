@@ -1,105 +1,147 @@
 import React, {Component, Fragment} from 'react'
 import {Col, Container, Row} from "react-bootstrap";
-import ProductDetailsLoading from "../PlaceHolder/ProductDetailsLoading";
 import SuggestedProduct from "./SuggestedProduct";
-import SuggestedProductLoading from "../PlaceHolder/SuggestedProductLoading";
+import ReactDOM from "react-dom";
 
 class ProductDetails extends Component {
 
-    constructor() {
-        super();
-        this.state = {
-            isLoading: '',
-            mainDiv: 'd-none',
-        }
+    imagePreview(event) {
+        let imageSrc = event.target.getAttribute('src');
+        let mainImage = document.getElementById('mainImage');
+        ReactDOM.findDOMNode(mainImage).setAttribute('src', imageSrc);
     }
 
-    componentDidMount() {
-        let title = '';
-        let shortDescription = '';
-        let longDescription = '';
-        let price = '';
-        let specialPrice = '';
-        let imageOne = '';
-        let imageTwo = '';
-        let imageThree = '';
-        let imageFour = '';
-        let category = '';
-        let subCategory = '';
-        let brand = '';
-        let productCode = '';
+    priceOption(price,specialPrice){
+        if (specialPrice === '') {
+            return (<p className="product-price-on-card mb-1"> Price: <b>{price}$</b> </p>);
+        }
+        return (<p className="product-price-on-card mb-1"> Price: <strike className="text-secondary">{price}$</strike> <b>{specialPrice}$</b> </p>);
     }
 
     render() {
 
-        let product = this.props.Product.Product;
-        let productDetails = this.props.Product.Details;
-        let productCategory = this.props.Product.Category;
-        let productSubCategory = this.props.Product.SubCategory;
-        if (product && productDetails && productCategory && productSubCategory) {
-            this.title = product.title;
-            this.price = product.price;
-            this.specialPrice = product.special_price;
-            this.brand = product.brand;
-            this.productCode = product.product_code;
-            this.shortDescription = productDetails.short_description;
-            this.longDescription = productDetails.long_description;
-            this.imageOne = productDetails.image_one;
-            this.imageTwo = productDetails.image_two;
-            this.imageThree = productDetails.image_three;
-            this.imageFour = productDetails.image_four;
-            this.category = productCategory.category_name;
-            this.subCategory = productSubCategory.sub_category_name;
-            this.setState({
-                isLoading: 'd-none',
-                mainDiv: '',
-            });
+        const {Product} = this.props;
+        const {
+            Product: product,
+            Details: productDetails,
+            Category: productCategory,
+            SubCategory: productSubCategory
+        } = Product;
+        if (!product || !productDetails || !productCategory || !productSubCategory) {
+            return null;
+        }
+
+        const {
+            title,
+            price,
+            special_price: specialPrice,
+            brand,
+            product_code: productCode
+        } = product;
+
+        const {
+            short_description: shortDescription,
+            long_description: longDescription,
+            color,
+            size,
+            image_one: imageOne,
+            image_two: imageTwo,
+            image_three: imageThree,
+            image_four: imageFour
+        } = productDetails;
+
+        const {category_name: category} = productCategory;
+        const {sub_category_name: subCategory} = productSubCategory;
+
+        let colorDiv = "d-none";
+        let colorOptions = [];
+        let sizeDiv = "d-none";
+        let sizeOptions = [];
+        if (color !== '') {
+            const colorArray = color.split(',');
+            colorOptions = colorArray.map((colorItem, i) => (
+                <option key={i} value={colorItem}>{colorItem}</option>
+            ));
+            colorDiv = "";
+        }
+        if (size !== '') {
+            const sizeArray = size.split(',');
+            sizeOptions = sizeArray.map((sizeItem, i) => (
+                <option key={i} value={sizeItem}>{sizeItem}</option>
+            ));
+            sizeDiv = "";
         }
 
         return (
             <Fragment>
-                <ProductDetailsLoading isLoading={this.state.isLoading}/>
-                <div className={this.state.mainDiv}>
+                <div>
                     <Container className="BetweenTwoSection">
                         <Row className="p-2">
                             <Col className="shadow-sm bg-white pb-3 mt-4" md={12} lg={12} sm={12} xs={12}>
                                 <Row>
                                     <Col className="p-3" md={6} lg={6} sm={12} xs={12}>
-                                        <img className="big-image" src={this.imageOne}/>
+                                        <img id="mainImage" className="big-image" src={imageOne}/>
                                         <Container className="my-3">
                                             <Row>
                                                 <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
-                                                    <img className="w-100" src={this.imageTwo}/>
+                                                    <img onClick={this.imagePreview} className="product-sm-image w-100"
+                                                         src={imageTwo}/>
                                                 </Col>
                                                 <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
-                                                    <img className="w-100" src={this.imageThree}/>
+                                                    <img onClick={this.imagePreview} className="product-sm-image w-100"
+                                                         src={imageThree}/>
                                                 </Col>
                                                 <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
-                                                    <img className="w-100" src={this.imageFour}/>
+                                                    <img onClick={this.imagePreview} className="product-sm-image w-100"
+                                                         src={imageFour}/>
                                                 </Col>
                                             </Row>
                                         </Container>
                                     </Col>
                                     <Col className="p-3" md={6} lg={6} sm={12} xs={12}>
-                                        <h5 className="Product-Name">{this.title}</h5>
-                                        <h6 className="section-sub-title">{this.shortDescription}</h6>
+                                        <h5 className="Product-Name">{title}</h5>
+                                        <h6 className="section-sub-title">{shortDescription}</h6>
                                         <div className="input-group">
-                                            <div className="Product-price-card d-inline text-danger">Reguler
-                                                Price <strike>{this.price}</strike></div>
-                                            <div className="Product-price-card d-inline text-info-emphasis">New
-                                                Price {this.specialPrice}</div>
+                                            <div className="Product-price-card d-inline">
+                                                {this.priceOption(price,specialPrice)}
+                                            </div>
                                         </div>
                                         <h6 className="mt-2">Category: <b
-                                            className="text-info-emphasis">{this.category}</b></h6>
+                                            className="text-info-emphasis">{category}</b></h6>
                                         <h6 className="mt-2">Sub Category: <b
-                                            className="text-info-emphasis">{this.subCategory}</b></h6>
-                                        <h6 className="mt-2">Brand: <b className="text-info-emphasis">{this.brand}</b>
+                                            className="text-info-emphasis">{subCategory}</b></h6>
+                                        <h6 className="mt-2">Brand: <b className="text-info-emphasis">{brand}</b>
                                         </h6>
                                         <h6 className="mt-2">Product Code: <b
-                                            className="text-info-emphasis">{this.productCode}</b></h6>
+                                            className="text-info-emphasis">{productCode}</b></h6>
+                                        <div className={colorDiv}>
+                                            <h6 className="mt-2">Select Color:</h6>
+                                            <select className="form-control dorm-select">
+                                                <option>Select Color</option>
+                                                {colorOptions}
+                                            </select>
+                                        </div>
 
-                                        <h6 className="mt-2">Quantity</h6>
-                                        <input className="form-control text-center w-50" type="number" value="1"/>
+                                        <div className={sizeDiv}>
+                                            <h6 className="mt-2">Select Size:</h6>
+                                            <select className="form-control dorm-select">
+                                                <option>Select Size</option>
+                                                {sizeOptions}
+                                            </select>
+                                        </div>
+
+                                        <div>
+                                            <h6 className="mt-2">Select Quantity:</h6>
+                                            <select className="form-control dorm-select">
+                                                <option>Select Quantity</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+
 
                                         <div className="input-group mt-3">
                                             <button className="btn site-btn m-1 "><i
@@ -118,7 +160,7 @@ class ProductDetails extends Component {
                                 <Row>
                                     <Col md={6} lg={6} sm={12} xs={12}>
                                         <h6>DETAILS</h6>
-                                        <p>{this.longDescription}</p>
+                                        <p>{longDescription}</p>
                                     </Col>
 
                                     <Col className="" md={6} lg={6} sm={12} xs={12}>
@@ -154,9 +196,8 @@ class ProductDetails extends Component {
                         </Row>
                     </Container>
                 </div>
-                <SuggestedProductLoading isLoading={this.state.isLoading}/>
-                <div className={this.state.mainDiv}>
-                    <SuggestedProduct isLoading={this.state.isLoading}/>
+                <div>
+                    <SuggestedProduct/>
                 </div>
             </Fragment>
 

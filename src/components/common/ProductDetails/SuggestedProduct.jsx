@@ -17,7 +17,7 @@ class SuggestedProduct extends Component {
                     </div>
                     <Row>
                         <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-                            <Link to="/product-details">
+                            <Link className="text-link" to="/product-details">
                                 <Card className="image-box card">
                                     <img className="center"
                                          src="https://rukminim2.flixcart.com/image/416/416/ktketu80/mobile/6/n/d/iphone-13-mlpg3hn-a-apple-original-imag6vpyghayhhrh.jpeg?q=70&crop=false"
@@ -34,7 +34,7 @@ class SuggestedProduct extends Component {
                             </Link>
                         </Col>
                         <Col className="p-1" key={2} xl={2} lg={2} md={2} sm={4} xs={6}>
-                            <Link to="/product-details">
+                            <Link className="text-link" to="/product-details">
                                 <Card className="image-box card">
                                     <img className="center"
                                          src="https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/h/d/9/-original-imagtc2qzgnnuhxh.jpeg?q=70&crop=false"
@@ -51,7 +51,7 @@ class SuggestedProduct extends Component {
                             </Link>
                         </Col>
                         <Col className="p-1" key={3} xl={2} lg={2} md={2} sm={4} xs={6}>
-                            <Link to="/product-details">
+                            <Link className="text-link" to="/product-details">
                                 <Card className="image-box card">
                                     <img className="center"
                                          src="https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/3/5/l/-original-imaghx9qmgqsk9s4.jpeg?q=70&crop=false"
@@ -68,7 +68,7 @@ class SuggestedProduct extends Component {
                             </Link>
                         </Col>
                         <Col className="p-1" key={4} xl={2} lg={2} md={2} sm={4} xs={6}>
-                            <Link to="/product-details">
+                            <Link className="text-link" to="/product-details">
                                 <Card className="image-box card">
                                     <img className="center"
                                          src="https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/a/c/k/-original-imagtc5fuzkvczr7.jpeg?q=70&crop=false"
@@ -85,7 +85,7 @@ class SuggestedProduct extends Component {
                             </Link>
                         </Col>
                         <Col className="p-1" key={5} xl={2} lg={2} md={2} sm={4} xs={6}>
-                            <Link to="/product-details">
+                            <Link className="text-link" to="/product-details">
                                 <Card className="image-box card">
                                     <img className="center"
                                          src="https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/b/u/f/-original-imaghxa5hvapbfds.jpeg?q=70&crop=false"
@@ -102,7 +102,7 @@ class SuggestedProduct extends Component {
                             </Link>
                         </Col>
                         <Col className="p-1" key={6} xl={2} lg={2} md={2} sm={4} xs={6}>
-                            <Link to="/product-details">
+                            <Link className="text-link" to="/product-details">
                                 <Card className="image-box card">
                                     <img className="center"
                                          src="https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/9/e/e/-original-imaghx9q5rvcdghy.jpeg?q=70&crop=false"

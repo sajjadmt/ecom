@@ -31,7 +31,7 @@ class Collection extends Component {
         const collectionView = collectionList.map((collectionList, i) => {
             if (collectionList.special_price == "") {
                 return <Col className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
-                    <Link to={"/product-details/" + collectionList.id}>
+                    <Link classname="text-link" to={"/product-details/" + collectionList.id}>
                     <Card className="image-box card w-100">
                         <img className="center w-75"
                              src={collectionList.image}
@@ -49,7 +49,7 @@ class Collection extends Component {
                 </Col>
             } else {
                 return <Col className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
-                    <Link to={"/product-details/" + collectionList.id}>
+                    <Link classname="text-link" to={"/product-details/" + collectionList.id}>
                     <Card className="image-box card w-100">
                         <img className="center w-75"
                              src={collectionList.image}

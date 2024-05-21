@@ -31,7 +31,7 @@ class FeaturedProducts extends Component {
         const featuredView = featuredList.map((featuredList, i) => {
             if (featuredList.special_price == "") {
                 return <Col className="p-1" key={i} xl={2} lg={2} md={2} sm={4} xs={6}>
-                    <Link to={"/product-details/" + featuredList.id}>
+                    <Link className="text-link" to={"/product-details/" + featuredList.id}>
                         <Card className="image-box card">
                             <img className="center"
                                  src={featuredList.image}
@@ -49,7 +49,7 @@ class FeaturedProducts extends Component {
                 </Col>
             } else {
                 return <Col className="p-1" key={i} xl={2} lg={2} md={2} sm={4} xs={6}>
-                    <Link to={"/product-details/" + featuredList.id}>
+                    <Link className="text-link" to={"/product-details/" + featuredList.id}>
                         <Card className="image-box card">
                             <img className="center"
                                  src={featuredList.image}

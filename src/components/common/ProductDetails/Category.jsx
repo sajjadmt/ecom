@@ -9,7 +9,7 @@ class Category extends Component {
         const categoryView = categoryList.map((categoryList, i) => {
             if (categoryList.special_price == "") {
                 return <Col key={i} className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
-                    <Link to={"/product-details/" + categoryList.id}>
+                    <Link className="text-link" to={"/product-details/" + categoryList.id}>
                         <Card className="image-box card w-100">
                             <img className="center w-75"
                                  src={categoryList.image}
@@ -27,7 +27,7 @@ class Category extends Component {
                 </Col>
             } else {
                 return <Col key={i} className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
-                    <Link to={"/product-details/" + categoryList.id}>
+                    <Link className="text-link" to={"/product-details/" + categoryList.id}>
                         <Card className="image-box card w-100">
                             <img className="center w-75"
                                  src={categoryList.image}

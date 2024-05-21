@@ -82,7 +82,7 @@ class NewArrival extends Component {
         const newProductView = newProductList.map((newProductList, i) => {
             if (newProductList.special_price == "") {
                 return <div key={i}>
-                    <Link to={"/product-details/" + newProductList.id}>
+                    <Link className="text-link" to={"/product-details/" + newProductList.id}>
                         <Card className="image-box card w-100">
                             <img className="center w-75"
                                  src={newProductList.image}
@@ -100,7 +100,7 @@ class NewArrival extends Component {
                 </div>
             } else {
                 return <div key={i}>
-                    <Link to={"/product-details/" + newProductList.id}>
+                    <Link className="text-link" to={"/product-details/" + newProductList.id}>
                     <Card className="image-box card w-100">
                         <img className="center w-75"
                              src={newProductList.image}

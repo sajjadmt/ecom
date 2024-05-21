@@ -21,3 +21,11 @@
 .big-image {
     height: 50%;
 }
+
+.product-sm-image{
+
+}
+
+.product-sm-image:hover{
+    cursor: pointer;
+ }
