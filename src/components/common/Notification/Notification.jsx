@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react'
 import {Button, Card, Col, Container, Modal, Row} from "react-bootstrap";
 import axios from "axios";
 import AppURL from "../../../api/AppURL";
+import NotificationLoading from "../PlaceHolder/NotificationLoading";
 
 export class Notification extends Component {
 
@@ -50,18 +51,23 @@ export class Notification extends Component {
                         <h6> {notificationItem.title}</h6>
                         <p className="py-1  px-0 text-primary m-0"><i className="fa  fa-bell"></i> Date:
                             {notificationItem.date} | Status: Unread</p>
-                    <Button onClick={this.handleShow} className="btn btn-warning" data-title={notificationItem.title} data-message={notificationItem.message} data-date={notificationItem.date}>Details</Button>
+                        <Button onClick={this.handleShow} className="btn btn-warning"
+                                data-title={notificationItem.title} data-message={notificationItem.message}
+                                data-date={notificationItem.date}>Details</Button>
                     </Card.Body>
                 </Card>
             </Col>);
         });
         return (
             <Fragment>
-                <Container className="TopSection">
-                    <Row>
-                        {notificationView}
-                    </Row>
-                </Container>
+                <NotificationLoading isLoading={this.state.isLoading}/>
+                <div className={this.state.mainDiv}>
+                    <Container className="TopSection">
+                        <Row>
+                            {notificationView}
+                        </Row>
+                    </Container>
+                </div>
                 <Modal show={this.state.show} onHide={this.handleClose}>
                     <Modal.Header closeButton>
                         <h6><i className="fa fa-bell"></i> Date: {this.state.notificationDate}</h6>
