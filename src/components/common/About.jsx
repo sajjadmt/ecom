@@ -1,9 +1,10 @@
 import React, {Component, Fragment} from 'react'
-import {Col, Container, Row} from "react-bootstrap";
+import {Breadcrumb, Col, Container, Row} from "react-bootstrap";
 import axios from "axios";
 import AppURL from "../../api/AppURL";
 import ReactHtmlParser from 'react-html-parser';
 import AboutLoading from "./PlaceHolder/AboutLoading";
+import {Link} from "react-router-dom";
 
 class About extends Component {
 
@@ -46,6 +47,12 @@ class About extends Component {
                 <div className={this.state.mainDiv}>
                     <Container>
                         <Row className="p-2">
+                        <div className="breadcrumb-body mt-5">
+                            <Breadcrumb>
+                                <Breadcrumb.Item><Link className="text-secondary" to="/">Home</Link></Breadcrumb.Item>
+                                <Breadcrumb.Item><Link className="text-dark" to="/about">About</Link></Breadcrumb.Item>
+                            </Breadcrumb>
+                        </div>
                             <Col className="shadow-sm mt-2 bg-white" lg={12} md={12} sm={12} xs={12}>
                                 <br/>
                                 <br/>

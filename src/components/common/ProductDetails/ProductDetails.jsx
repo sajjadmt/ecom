@@ -1,7 +1,8 @@
 import React, {Component, Fragment} from 'react'
-import {Col, Container, Row} from "react-bootstrap";
+import {Breadcrumb, Col, Container, Row} from "react-bootstrap";
 import SuggestedProduct from "./SuggestedProduct";
 import ReactDOM from "react-dom";
+import {Link} from "react-router-dom";
 
 class ProductDetails extends Component {
 
@@ -11,11 +12,12 @@ class ProductDetails extends Component {
         ReactDOM.findDOMNode(mainImage).setAttribute('src', imageSrc);
     }
 
-    priceOption(price,specialPrice){
+    priceOption(price, specialPrice) {
         if (specialPrice === '') {
-            return (<p className="product-price-on-card mb-1"> Price: <b>{price}$</b> </p>);
+            return (<p className="product-price-on-card mb-1"> Price: <b>{price}$</b></p>);
         }
-        return (<p className="product-price-on-card mb-1"> Price: <strike className="text-secondary">{price}$</strike> <b>{specialPrice}$</b> </p>);
+        return (<p className="product-price-on-card mb-1"> Price: <strike className="text-secondary">{price}$</strike>
+            <b>{specialPrice}$</b></p>);
     }
 
     render() {
@@ -32,6 +34,7 @@ class ProductDetails extends Component {
         }
 
         const {
+            id,
             title,
             price,
             special_price: specialPrice,
@@ -77,6 +80,18 @@ class ProductDetails extends Component {
                 <div>
                     <Container className="BetweenTwoSection">
                         <Row className="p-2">
+                            <div className="breadcrumb-body mt-4">
+                                <Breadcrumb className="ms-2">
+                                    <Breadcrumb.Item><Link className="text-secondary"
+                                                           to="/">Home</Link></Breadcrumb.Item>
+                                    <Breadcrumb.Item><Link className="text-secondary"
+                                                           to={"/product-category/" + category}>{category}</Link></Breadcrumb.Item>
+                                    <Breadcrumb.Item><Link className="text-secondary"
+                                                           to={"/product-category/" + subCategory}>{subCategory}</Link>
+                                    </Breadcrumb.Item><Breadcrumb.Item><Link className="text-dark"
+                                                           to={"/product-details/" + id}>{title}</Link></Breadcrumb.Item>
+                                </Breadcrumb>
+                            </div>
                             <Col className="shadow-sm bg-white pb-3 mt-4" md={12} lg={12} sm={12} xs={12}>
                                 <Row>
                                     <Col className="p-3" md={6} lg={6} sm={12} xs={12}>
@@ -103,7 +118,7 @@ class ProductDetails extends Component {
                                         <h6 className="section-sub-title">{shortDescription}</h6>
                                         <div className="input-group">
                                             <div className="Product-price-card d-inline">
-                                                {this.priceOption(price,specialPrice)}
+                                                {this.priceOption(price, specialPrice)}
                                             </div>
                                         </div>
                                         <h6 className="mt-2">Category: <b
