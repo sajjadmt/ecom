@@ -18,6 +18,10 @@ class AppUrl {
     static ProductDetails(id) {
         return this.BaseURL + "/product-details/" + id;
     }
+
+    static SearchByProduct(SearchKey) {
+        return this.BaseURL + "/search/" + SearchKey;
+    }
 }
 
 export default AppUrl

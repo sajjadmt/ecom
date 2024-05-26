@@ -12,6 +12,7 @@ import FavouritePage from "../pages/FavouritePage";
 import CartPage from "../pages/CartPage";
 import AboutPage from "../pages/AboutPage";
 import ProductCategoryPage from "../pages/ProductCategoryPage";
+import SearchPage from "../pages/SearchPage";
 
 class AppRoute extends Component {
     render() {
@@ -30,6 +31,7 @@ class AppRoute extends Component {
                     <Route exact path="/cart" render={(props)=> <CartPage {...props} key={Date.now()} /> } />
                     <Route exact path="/about" render={(props)=> <AboutPage {...props} key={Date.now()} /> } />
                     <Route exact path="/product-category/:Category" render={(props)=> <ProductCategoryPage {...props} key={Date.now()} /> } />
+                    <Route exact path="/product-list-by-search/:SearchKey" render={(props)=> <SearchPage {...props} key={Date.now()} /> } />
                 </Switch>
             </Router>
         )
