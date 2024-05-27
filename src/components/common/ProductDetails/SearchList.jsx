@@ -6,7 +6,7 @@ class SearchList extends Component {
     render() {
         const productList = this.props.productData;
         const searchKey = this.props.SearchKey;
-        const searchKeyView = productList.map((productList, i) => {
+        const resultView = productList.map((productList, i) => {
             if (productList.special_price == "") {
                 return <Col key={i} className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
                     <Link className="text-link" to={"/product-details/" + productList.id}>
@@ -63,7 +63,7 @@ class SearchList extends Component {
                     </div>
                     <br/>
                     <Row>
-                        {searchKeyView}
+                        {resultView}
                     </Row>
                 </Container>
             </Fragment>
