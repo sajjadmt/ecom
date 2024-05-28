@@ -1,9 +1,8 @@
-import React, {Component, Fragment} from 'react'
+import React, {Component, Fragment} from 'react';
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
-import Login from "../../assets/images/login.png";
-import {Link} from "react-router-dom";
+import Forget from "../../assets/images/forget.jpg";
 
-class UserLogin extends Component {
+class ResetPassword extends Component {
     render() {
         return (
             <Fragment>
@@ -14,21 +13,20 @@ class UserLogin extends Component {
                                 <Col lg={6} md={6} sm={12} xs={12}>
                                     <Form className="onboardForm">
                                         <h4 className="section-title-login">
-                                             USER SIGN IN
+                                            RESET PASSWORD
                                         </h4>
+                                        <input type="number" className="form-control mb-2" placeholder="Enter Your Pin Code"/>
                                         <input type="email" className="form-control mb-2" placeholder="Enter Your Email"/>
-                                        <input type="password" className="form-control mb-2" placeholder="Enter Your Password"/>
+                                        <input type="password" className="form-control mb-2" placeholder="Enter Your New Password"/>
+                                        <input type="password" className="form-control mb-2" placeholder="Confirm Your New Password"/>
                                         <br/>
                                         <Button className="btn btn-block site-btn-login">
-                                             Login
+                                            Reset
                                         </Button>
-                                        <hr/>
-                                        <p><b>Forget Your Password? <Link to={""}><b>Forget Password</b></Link></b></p>
-                                        <p><b>Don't Have An Account? <Link to={"/register"}><b>Register</b></Link></b></p>
                                     </Form>
                                 </Col>
                                 <Col className="p-0 m-0 Desktop" lg={6} md={6} sm={6} xs={6}>
-                                    <img className="onboardBanner" src={Login} alt=""/>
+                                    <img className="onboardBanner" src={Forget} alt=""/>
                                 </Col>
                             </Row>
                         </Col>
@@ -39,4 +37,4 @@ class UserLogin extends Component {
     }
 }
 
-export default UserLogin
+export default ResetPassword;
