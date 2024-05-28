@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
-import Login from "../../assets/images/login.png";
+import RegisterPhoto from "../../assets/images/register.jpg";
 
 class Register extends Component {
     render() {
@@ -30,7 +30,7 @@ class Register extends Component {
                                     </Form>
                                 </Col>
                                 <Col className="p-0 m-0 Desktop" lg={6} md={6} sm={6} xs={6}>
-                                    <img className="onboardBanner" src={Login} alt=""/>
+                                    <img className="onboardBanner" src={RegisterPhoto} alt=""/>
                                 </Col>
                             </Row>
                         </Col>
