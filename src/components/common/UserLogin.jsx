@@ -1,10 +1,42 @@
 import React, {Component, Fragment} from 'react'
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
 import Login from "../../assets/images/login.png";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
+import axios from "axios";
+import AppURL from "../../api/AppURL";
 
 class UserLogin extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+            email: '',
+            password: '',
+            message: '',
+            loggedIn: false,
+        }
+    }
+
+    FormSubmit = (e) =>{
+        e.preventDefault();
+        const data = {
+            email: this.state.email,
+            password: this.state.password,
+        }
+        axios.post(AppURL.UserLogin,data).then((response)=>{
+            localStorage.setItem('token',response.data.token);
+            this.setState({
+                loggedIn: true,
+            });
+        }).catch();
+    }
+
     render() {
+
+        if (this.state.loggedIn){
+            return <Redirect to={'/profile'} />
+        }
+
         return (
             <Fragment>
                 <Container>
@@ -12,18 +44,18 @@ class UserLogin extends Component {
                         <Col className="shadow-sm mt-2 bg-white" lg={12} md={12} sm={12} xs={12}>
                             <Row>
                                 <Col lg={6} md={6} sm={12} xs={12}>
-                                    <Form className="onboardForm">
+                                    <Form className="onboardForm" onSubmit={this.FormSubmit}>
                                         <h4 className="section-title-login">
                                              USER SIGN IN
                                         </h4>
-                                        <input type="email" className="form-control mb-2" placeholder="Enter Your Email"/>
-                                        <input type="password" className="form-control mb-2" placeholder="Enter Your Password"/>
+                                        <input onChange={(e) => {this.setState({email: e.target.value})}} type="email" className="form-control mb-2" placeholder="Enter Your Email"/>
+                                        <input onChange={(e) => {this.setState({password: e.target.value})}} type="password" className="form-control mb-2" placeholder="Enter Your Password"/>
                                         <br/>
-                                        <Button className="btn btn-block site-btn-login">
+                                        <Button type="submit" className="btn btn-block site-btn-login">
                                              Login
                                         </Button>
                                         <hr/>
-                                        <p><b>Forget Your Password? <Link to={""}><b>Forget Password</b></Link></b></p>
+                                        <p><b>Forget Your Password? <Link to={"/forget-password"}><b>Forget Password</b></Link></b></p>
                                         <p><b>Don't Have An Account? <Link to={"/register"}><b>Register</b></Link></b></p>
                                     </Form>
                                 </Col>

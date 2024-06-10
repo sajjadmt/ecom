@@ -6,12 +6,15 @@ class AppUrl {
     static AllCategoryDetails = this.BaseURL + "/all-category";
     static AllSlider = this.BaseURL + "/all-slider";
     static AllNotification = this.BaseURL + "/notifications";
+    static UserLogin = this.BaseURL + "/login";
+    static UserData = this.BaseURL + "/user";
 
     static ProductListByRemark(Remark) {
         return this.BaseURL + "/product-list-by-remark/" + Remark;
     }
 
     static ProductListByCategory(Category) {
+        
         return this.BaseURL + "/product-list-by-category/" + Category;
     }
 

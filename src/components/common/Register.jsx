@@ -25,7 +25,7 @@ class Register extends Component {
                                             Register
                                         </Button>
                                         <hr/>
-                                        <p><b>Forget Your Password? <Link to={""}><b>Forget Password</b></Link></b></p>
+                                        <p><b>Forget Your Password? <Link to={"/forget-password"}><b>Forget Password</b></Link></b></p>
                                         <p><b>Have An Account? <Link to={"/login"}><b>Login</b></Link></b></p>
                                     </Form>
                                 </Col>

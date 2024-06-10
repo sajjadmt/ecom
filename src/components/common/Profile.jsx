@@ -4,6 +4,14 @@ import ProfilePhoto from "../../assets/images/profile.jpg";
 
 class Profile extends Component {
     render() {
+
+        let name;
+        let email;
+        if (this.props.user){
+            name = this.props.user.name;
+            email = this.props.user.email;
+        }
+
         return (
             <Fragment>
                 <Container>
@@ -12,12 +20,12 @@ class Profile extends Component {
                             <Row>
                                 <Col lg={6} md={6} sm={12} xs={12}>
                                     <Form className="onboardForm">
-                                        <h4 className="section-title-login">
+                                        <h4 className="section-title-login"> =
                                             USER PROFILE
                                         </h4>
                                         <ul className="list-group">
-                                            <li className="list-group-item">Name: Sajjad</li>
-                                            <li className="list-group-item">Email: Sajjad@gmail.com</li>
+                                            <li className="list-group-item">Name: {name}</li>
+                                            <li className="list-group-item">Email: {email}</li>
                                         </ul>
                                     </Form>
                                 </Col>
