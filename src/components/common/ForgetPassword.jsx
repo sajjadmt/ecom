@@ -2,8 +2,39 @@ import React, {Component, Fragment} from 'react';
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import Forget from "../../assets/images/forget.jpg";
+import axios from "axios";
+import AppURL from "../../api/AppURL";
+import {toast, ToastContainer} from "react-toastify";
 
 class ForgetPassword extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+            email: '',
+            message: ''
+        }
+    }
+
+    formSubmit = (e) =>{
+        e.preventDefault();
+        const data = {
+            email: this.state.email,
+        }
+        axios.post(AppURL.ForgetPassword,data).then((response)=>{
+            this.setState({
+                message: response.data.message
+            });
+            document.getElementById('form').reset();
+            toast.success(this.state.message);
+        }).catch((error)=>{
+            this.setState({
+                message: error.response.data.message
+            });
+            toast.error(this.state.message);
+        });
+    }
+
     render() {
         return (
             <Fragment>
@@ -12,13 +43,13 @@ class ForgetPassword extends Component {
                         <Col className="shadow-sm mt-2 bg-white" lg={12} md={12} sm={12} xs={12}>
                             <Row>
                                 <Col lg={6} md={6} sm={12} xs={12}>
-                                    <Form className="onboardForm">
+                                    <Form className="onboardForm" onSubmit={this.formSubmit} id="form">
                                         <h4 className="section-title-login">
                                             FORGET YOUR PASSWORD?
                                         </h4>
-                                        <input type="email" className="form-control mb-2" placeholder="Enter Your Email"/>
+                                        <input onChange={(e) => {this.setState({email: e.target.value})}} type="email" className="form-control mb-2" placeholder="Enter Your Email"/>
                                         <br/>
-                                        <Button className="btn btn-block site-btn-login">
+                                        <Button type="submit" className="btn btn-block site-btn-login">
                                             Reset Password
                                         </Button>
                                         <hr/>
@@ -33,6 +64,7 @@ class ForgetPassword extends Component {
                         </Col>
                     </Row>
                 </Container>
+                <ToastContainer/>
             </Fragment>
         )
     }

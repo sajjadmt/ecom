@@ -19,6 +19,10 @@ class NavMenuDesktop extends Component {
         this.SearchRedirect = this.SearchRedirect.bind(this);
     }
 
+    logOut = () => {
+        localStorage.clear();
+    }
+
     SearchOnChange(event){
         this.setState({
             Searchkey: event.target.value,
@@ -64,6 +68,32 @@ class NavMenuDesktop extends Component {
     }
 
     render() {
+
+        let auth;
+        if (localStorage.getItem('token')){
+            auth = (
+                <div>
+                    <Link to="/profile" className="h4 btn">
+                        PROFILE
+                    </Link>
+                    <Link to="/" onClick={this.logOut} className="h4 btn">
+                        LOGOUT
+                    </Link>
+                </div>
+            )
+        } else {
+            auth = (
+                <div>
+                    <Link to="/login" className="h4 btn">
+                        LOGIN
+                    </Link>
+                    <Link to="/register" className="h4 btn">
+                        REGISTER
+                    </Link>
+                </div>
+            )
+        }
+
         return (
             <Fragment>
                 <div className="TopSectionDown">
@@ -104,12 +134,7 @@ class NavMenuDesktop extends Component {
                                             </sup>
                                         </i>
                                     </Link>
-                                    <Link to="/login" className="h4 btn">
-                                        LOGIN
-                                    </Link>
-                                    <Link to="/register" className="h4 btn">
-                                        REGISTER
-                                    </Link>
+                                    {auth}
                                     <Link to="/cart" className="cart-btn">
                                         <i className="fa fa-shopping-cart"></i> 3 Items</Link>
                                 </Col>

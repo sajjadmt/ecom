@@ -48,8 +48,8 @@ class AppRoute extends Component {
                 <NavMenuDesktop user={this.state.user} setUser={this.setUser} />
                 <Switch>
                     <Route exact path="/" render={(props)=> <HomePage {...props} key={Date.now()} /> } />
-                    <Route exact path="/login" render={(props)=> <UserLoginPage {...props} key={Date.now()} /> } />
-                    <Route exact path="/register" render={(props)=> <RegisterPage {...props} key={Date.now()} /> } />
+                    <Route exact path="/login" render={(props)=> <UserLoginPage user={this.state.user} setUser={this.setUser} {...props} key={Date.now()} /> } />
+                    <Route exact path="/register" render={(props)=> <RegisterPage user={this.state.user} setUser={this.setUser} {...props} key={Date.now()} /> } />
                     <Route exact path="/forget-password" render={(props)=> <ForgetPasswordPage {...props} key={Date.now()} /> } />
                     <Route exact path="/reset-password/:code" render={(props)=> <ResetPasswordPage {...props} key={Date.now()} /> } />
                     <Route exact path="/profile" render={(props)=> <ProfilePage user={this.state.user} setUser={this.setUser} {...props} key={Date.now()} /> } />

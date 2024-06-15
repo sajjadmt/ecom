@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {Col, Container, Form, Row} from "react-bootstrap";
 import ProfilePhoto from "../../assets/images/profile.jpg";
+import {Redirect} from "react-router-dom";
 
 class Profile extends Component {
     render() {
@@ -12,6 +13,10 @@ class Profile extends Component {
             email = this.props.user.email;
         }
 
+        if (!localStorage.getItem('token')){
+            return <Redirect to={'/login'} />
+        }
+
         return (
             <Fragment>
                 <Container>
@@ -20,7 +25,7 @@ class Profile extends Component {
                             <Row>
                                 <Col lg={6} md={6} sm={12} xs={12}>
                                     <Form className="onboardForm">
-                                        <h4 className="section-title-login"> =
+                                        <h4 className="section-title-login">
                                             USER PROFILE
                                         </h4>
                                         <ul className="list-group">

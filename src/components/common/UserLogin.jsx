@@ -28,12 +28,13 @@ class UserLogin extends Component {
             this.setState({
                 loggedIn: true,
             });
+            this.props.setUser(response.data.user)
         }).catch();
     }
 
     render() {
 
-        if (this.state.loggedIn){
+        if (this.state.loggedIn || localStorage.getItem('token')){
             return <Redirect to={'/profile'} />
         }
 

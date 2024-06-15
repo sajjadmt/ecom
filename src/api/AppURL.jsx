@@ -7,7 +7,10 @@ class AppUrl {
     static AllSlider = this.BaseURL + "/all-slider";
     static AllNotification = this.BaseURL + "/notifications";
     static UserLogin = this.BaseURL + "/login";
+    static UserRegister = this.BaseURL + "/register";
     static UserData = this.BaseURL + "/user";
+    static ForgetPassword = this.BaseURL + "/forget-password";
+    static ResetPassword = this.BaseURL + "/reset-password";
 
     static ProductListByRemark(Remark) {
         return this.BaseURL + "/product-list-by-remark/" + Remark;
