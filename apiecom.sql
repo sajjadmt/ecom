@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2024 at 09:44 AM
+-- Generation Time: May 30, 2024 at 09:44 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -204,7 +204,119 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (11, '2024_04_18_140139_create_remarks_table', 6),
 (12, '2024_04_18_140147_create_product_lists_table', 6),
 (13, '2024_04_20_172453_create_home_sliders_table', 7),
-(15, '2024_04_24_170124_create_product_details_table', 8);
+(15, '2024_04_24_170124_create_product_details_table', 8),
+(16, '2024_05_21_161459_create_notifications_table', 9),
+(17, '2024_05_30_071144_create_oauth_auth_codes_table', 9),
+(18, '2024_05_30_071145_create_oauth_access_tokens_table', 9),
+(19, '2024_05_30_071146_create_oauth_refresh_tokens_table', 9),
+(20, '2024_05_30_071147_create_oauth_clients_table', 9),
+(21, '2024_05_30_071148_create_oauth_personal_access_clients_table', 9);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `message` text NOT NULL,
+  `date` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`id`, `title`, `message`, `date`, `created_at`, `updated_at`) VALUES
+(1, 'Notification 1', 'Notification 1 In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available.', '2024/02/12', NULL, NULL),
+(2, 'Notification 2', 'Notification 2 In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available.Lorem ipsum may be used as a placeholder before the final copy is available.', '2024/02/10', NULL, NULL),
+(3, 'Notification 3', 'Notification 3 In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or', '2023/08/12', NULL, NULL),
+(4, 'Notification 4', 'Notification 4 In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available.Lorem ipsum may be used as a placeholder before the final copy is available.Lorem ipsum may be used as a placeholder before the final copy is available.Lorem ipsum may be used as a placeholder before the final copy is available.', '2024/02/12', NULL, NULL),
+(5, 'Notification 5', 'Notification 5 In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before th', '2020/10/15', NULL, NULL),
+(6, 'Notification 6', 'Notification 6 In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.', '1999/02/12', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_access_tokens`
+--
+
+CREATE TABLE `oauth_access_tokens` (
+  `id` varchar(100) NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `client_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `scopes` text DEFAULT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `expires_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_auth_codes`
+--
+
+CREATE TABLE `oauth_auth_codes` (
+  `id` varchar(100) NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `client_id` bigint(20) UNSIGNED NOT NULL,
+  `scopes` text DEFAULT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `expires_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_clients`
+--
+
+CREATE TABLE `oauth_clients` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `secret` varchar(100) DEFAULT NULL,
+  `provider` varchar(255) DEFAULT NULL,
+  `redirect` text NOT NULL,
+  `personal_access_client` tinyint(1) NOT NULL,
+  `password_client` tinyint(1) NOT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_personal_access_clients`
+--
+
+CREATE TABLE `oauth_personal_access_clients` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `client_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_refresh_tokens`
+--
+
+CREATE TABLE `oauth_refresh_tokens` (
+  `id` varchar(100) NOT NULL,
+  `access_token_id` varchar(100) NOT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `expires_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -826,7 +938,13 @@ INSERT INTO `visitors` (`id`, `ip_address`, `visit_time`, `visit_date`, `created
 (345, '127.0.0.1', '06:14:35pm', '2024:05:02', '2024-05-02 14:44:35', '2024-05-02 14:44:35'),
 (346, '127.0.0.1', '06:14:37pm', '2024:05:02', '2024-05-02 14:44:37', '2024-05-02 14:44:37'),
 (347, '127.0.0.1', '06:40:40pm', '2024:05:02', '2024-05-02 15:10:40', '2024-05-02 15:10:40'),
-(348, '127.0.0.1', '06:40:43pm', '2024:05:02', '2024-05-02 15:10:43', '2024-05-02 15:10:43');
+(348, '127.0.0.1', '06:40:43pm', '2024:05:02', '2024-05-02 15:10:43', '2024-05-02 15:10:43'),
+(349, '127.0.0.1', '10:47:38am', '2024:05:30', '2024-05-30 07:17:38', '2024-05-30 07:17:38'),
+(350, '127.0.0.1', '10:47:41am', '2024:05:30', '2024-05-30 07:17:41', '2024-05-30 07:17:41'),
+(351, '127.0.0.1', '11:12:38am', '2024:05:30', '2024-05-30 07:42:38', '2024-05-30 07:42:38'),
+(352, '127.0.0.1', '11:12:40am', '2024:05:30', '2024-05-30 07:42:40', '2024-05-30 07:42:40'),
+(353, '127.0.0.1', '11:13:28am', '2024:05:30', '2024-05-30 07:43:28', '2024-05-30 07:43:28'),
+(354, '127.0.0.1', '11:13:30am', '2024:05:30', '2024-05-30 07:43:30', '2024-05-30 07:43:30');
 
 --
 -- Indexes for dumped tables
@@ -887,6 +1005,46 @@ ALTER TABLE `job_batches`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `oauth_access_tokens`
+--
+ALTER TABLE `oauth_access_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `oauth_access_tokens_user_id_index` (`user_id`);
+
+--
+-- Indexes for table `oauth_auth_codes`
+--
+ALTER TABLE `oauth_auth_codes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `oauth_auth_codes_user_id_index` (`user_id`);
+
+--
+-- Indexes for table `oauth_clients`
+--
+ALTER TABLE `oauth_clients`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `oauth_clients_user_id_index` (`user_id`);
+
+--
+-- Indexes for table `oauth_personal_access_clients`
+--
+ALTER TABLE `oauth_personal_access_clients`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `oauth_refresh_tokens`
+--
+ALTER TABLE `oauth_refresh_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `oauth_refresh_tokens_access_token_id_index` (`access_token_id`);
 
 --
 -- Indexes for table `password_reset_tokens`
@@ -996,7 +1154,25 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `oauth_clients`
+--
+ALTER TABLE `oauth_clients`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `oauth_personal_access_clients`
+--
+ALTER TABLE `oauth_personal_access_clients`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -1044,7 +1220,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `visitors`
 --
 ALTER TABLE `visitors`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=349;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=355;
 
 --
 -- Constraints for dumped tables
