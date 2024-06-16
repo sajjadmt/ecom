@@ -18,7 +18,7 @@ class ProductDetails extends Component {
     imagePreview = (event) => {
         let imageSrc = event.target.getAttribute('src');
         this.setState({
-            mainImage: imageSrc
+            mainImage: imageSrc,
         });
     }
 
