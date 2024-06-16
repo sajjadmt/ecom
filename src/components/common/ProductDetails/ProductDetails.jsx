@@ -3,13 +3,23 @@ import {Breadcrumb, Col, Container, Row} from "react-bootstrap";
 import SuggestedProduct from "./SuggestedProduct";
 import ReactDOM from "react-dom";
 import {Link} from "react-router-dom";
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
+import InnerImageZoom from 'react-inner-image-zoom';
 
 class ProductDetails extends Component {
 
-    imagePreview(event) {
+    constructor() {
+        super();
+        this.state = {
+            mainImage: '0',
+        }
+    }
+
+    imagePreview = (event) => {
         let imageSrc = event.target.getAttribute('src');
-        let mainImage = document.getElementById('mainImage');
-        ReactDOM.findDOMNode(mainImage).setAttribute('src', imageSrc);
+        this.setState({
+            mainImage: imageSrc
+        });
     }
 
     priceOption(price, specialPrice) {
@@ -53,6 +63,12 @@ class ProductDetails extends Component {
             image_four: imageFour
         } = productDetails;
 
+        if (this.state.mainImage === '0'){
+            this.setState({
+                mainImage: imageOne
+            });
+        }
+
         const {category_name: category} = productCategory;
         const {sub_category_name: subCategory} = productSubCategory;
 
@@ -80,7 +96,7 @@ class ProductDetails extends Component {
                 <div>
                     <Container className="BetweenTwoSection">
                         <Row className="p-2">
-                            <div className="breadcrumb-body mt-4">
+                            <div className="breadcrumb-body mt-5">
                                 <Breadcrumb className="ms-2">
                                     <Breadcrumb.Item><Link className="text-secondary"
                                                            to="/">Home</Link></Breadcrumb.Item>
@@ -95,9 +111,16 @@ class ProductDetails extends Component {
                             <Col className="shadow-sm bg-white pb-3 mt-4" md={12} lg={12} sm={12} xs={12}>
                                 <Row>
                                     <Col className="p-3" md={6} lg={6} sm={12} xs={12}>
-                                        <img id="mainImage" className="big-image" src={imageOne}/>
+                                        {/*<img id="mainImage" className="big-image" src={imageOne}/>*/}
+                                        <div>
+                                            <InnerImageZoom src={this.state.mainImage} zoomSrc={this.state.mainImage} zoomType="hover" zoomScale="1.5"/>
+                                        </div>
                                         <Container className="my-3">
                                             <Row>
+                                                <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
+                                                    <img onClick={this.imagePreview} className="product-sm-image w-100"
+                                                         src={imageOne}/>
+                                                </Col>
                                                 <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
                                                     <img onClick={this.imagePreview} className="product-sm-image w-100"
                                                          src={imageTwo}/>

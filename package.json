@@ -15,6 +15,7 @@
     "react-bootstrap": "^2.10.0",
     "react-dom": "^18.2.0",
     "react-html-parser": "^2.0.2",
+    "react-inner-image-zoom": "^3.0.2",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-router-transition": "^2.1.0",
