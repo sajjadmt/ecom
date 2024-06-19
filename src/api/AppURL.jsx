@@ -28,6 +28,14 @@ class AppUrl {
     static SearchByProduct(SearchKey) {
         return this.BaseURL + "/search/" + SearchKey;
     }
+
+    static SuggestedProduct(SubCategoryId) {
+        return this.BaseURL + "/suggested-products/" + SubCategoryId;
+    }
+
+    static ReviewList(ProductId) {
+        return this.BaseURL + "/review-list/" + ProductId;
+    }
 }
 
 export default AppUrl

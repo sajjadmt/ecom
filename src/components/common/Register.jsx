@@ -30,7 +30,7 @@ class Register extends Component {
         axios.post(AppURL.UserRegister,data).then((response)=>{
             localStorage.setItem('token',response.data.token);
             this.setState({
-                loggedIn: true
+                loggedIn: true,
             });
             this.props.setUser(response.data.user)
         }).catch();

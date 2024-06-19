@@ -1,10 +1,10 @@
 import React, {Component, Fragment} from 'react'
 import {Breadcrumb, Col, Container, Row} from "react-bootstrap";
 import SuggestedProduct from "./SuggestedProduct";
-import ReactDOM from "react-dom";
 import {Link} from "react-router-dom";
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 import InnerImageZoom from 'react-inner-image-zoom';
+import ReviewList from "./ReviewList";
 
 class ProductDetails extends Component {
 
@@ -37,7 +37,7 @@ class ProductDetails extends Component {
             Product: product,
             Details: productDetails,
             Category: productCategory,
-            SubCategory: productSubCategory
+            SubCategory: productSubCategory,
         } = Product;
         if (!product || !productDetails || !productCategory || !productSubCategory) {
             return null;
@@ -49,10 +49,12 @@ class ProductDetails extends Component {
             price,
             special_price: specialPrice,
             brand,
-            product_code: productCode
+            product_code: productCode,
+            sub_category_id: subCategoryId,
         } = product;
 
         const {
+            product_id: productId,
             short_description: shortDescription,
             long_description: longDescription,
             color,
@@ -63,7 +65,7 @@ class ProductDetails extends Component {
             image_four: imageFour
         } = productDetails;
 
-        if (this.state.mainImage === '0'){
+        if (this.state.mainImage === '0') {
             this.setState({
                 mainImage: imageOne
             });
@@ -105,7 +107,7 @@ class ProductDetails extends Component {
                                     <Breadcrumb.Item><Link className="text-secondary"
                                                            to={"/product-category/" + subCategory}>{subCategory}</Link>
                                     </Breadcrumb.Item><Breadcrumb.Item><Link className="text-dark"
-                                                           to={"/product-details/" + id}>{title}</Link></Breadcrumb.Item>
+                                                                             to={"/product-details/" + id}>{title}</Link></Breadcrumb.Item>
                                 </Breadcrumb>
                             </div>
                             <Col className="shadow-sm bg-white pb-3 mt-4" md={12} lg={12} sm={12} xs={12}>
@@ -113,7 +115,8 @@ class ProductDetails extends Component {
                                     <Col className="p-3" md={6} lg={6} sm={12} xs={12}>
                                         {/*<img id="mainImage" className="big-image" src={imageOne}/>*/}
                                         <div>
-                                            <InnerImageZoom src={this.state.mainImage} zoomSrc={this.state.mainImage} zoomType="hover" zoomScale="1.5"/>
+                                            <InnerImageZoom src={this.state.mainImage} zoomSrc={this.state.mainImage}
+                                                            zoomType="hover" zoomScale="1.5"/>
                                         </div>
                                         <Container className="my-3">
                                             <Row>
@@ -203,30 +206,8 @@ class ProductDetails extends Component {
 
                                     <Col className="" md={6} lg={6} sm={12} xs={12}>
                                         <h6 className="mt-2">REVIEWS</h6>
-                                        <p className=" p-0 m-0"><span className="Review-Title">Kazi Ariyan</span> <span
-                                            className="text-success"><i className="fa fa-star"></i> <i
-                                            className="fa fa-star"></i> <i className="fa fa-star"></i> <i
-                                            className="fa fa-star"></i> </span></p>
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-                                            nibh
-                                            euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-
-                                        <p className=" p-0 m-0"><span className="Review-Title">Kazi Ariyan</span> <span
-                                            className="text-success"><i className="fa fa-star"></i> <i
-                                            className="fa fa-star"></i> <i className="fa fa-star"></i> <i
-                                            className="fa fa-star"></i> </span></p>
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-                                            nibh
-                                            euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-
-                                        <p className=" p-0 m-0"><span className="Review-Title">Kazi Ariyan</span> <span
-                                            className="text-success"><i className="fa fa-star"></i> <i
-                                            className="fa fa-star"></i> <i className="fa fa-star"></i> <i
-                                            className="fa fa-star"></i> </span></p>
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-                                            nibh
-                                            euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-
+                                        <hr/>
+                                        <ReviewList ProductId={productId}/>
                                     </Col>
                                 </Row>
 
@@ -235,7 +216,7 @@ class ProductDetails extends Component {
                     </Container>
                 </div>
                 <div>
-                    <SuggestedProduct/>
+                    <SuggestedProduct SubCategoryId={subCategoryId}/>
                 </div>
             </Fragment>
 
