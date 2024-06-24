@@ -45,7 +45,7 @@ class AppRoute extends Component {
     render() {
         return (
             <Router>
-                <NavMenuDesktop user={this.state.user} setUser={this.setUser} />
+                <NavMenuDesktop User={this.state.user} />
                 <Switch>
                     <Route exact path="/" render={(props)=> <HomePage {...props} key={Date.now()} /> } />
                     <Route exact path="/login" render={(props)=> <UserLoginPage user={this.state.user} setUser={this.setUser} {...props} key={Date.now()} /> } />
@@ -57,7 +57,7 @@ class AppRoute extends Component {
                     <Route exact path="/purchase" render={(props)=> <PurchasePage {...props} key={Date.now()} /> } />
                     <Route exact path="/privacy" render={(props)=> <PrivacyPage {...props} key={Date.now()} /> } />
                     <Route exact path="/refund" render={(props)=> <RefundPage {...props} key={Date.now()} /> } />
-                    <Route exact path="/product-details/:id" render={(props)=> <ProductDetailsPage {...props} key={Date.now()} /> } />
+                    <Route exact path="/product-details/:id" render={(props)=> <ProductDetailsPage user={this.state.user} {...props} key={Date.now()} /> } />
                     <Route exact path="/notifications" render={(props)=> <NotificationPage {...props} key={Date.now()} /> } />
                     <Route exact path="/favourite" render={(props)=> <FavouritePage {...props} key={Date.now()} /> } />
                     <Route exact path="/cart" render={(props)=> <CartPage {...props} key={Date.now()} /> } />
