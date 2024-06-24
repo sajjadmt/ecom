@@ -3,20 +3,51 @@ import {Button, Col, Container, Navbar, Row} from "react-bootstrap";
 import Logo from '../../assets/images/easyshop.png';
 import {Link, Redirect} from "react-router-dom";
 import MegaMenuAll from "../home/MegaMenuAll";
+import axios from "axios";
+import AppURL from "../../api/AppURL";
 
 class NavMenuDesktop extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             SideNavState: "sideNavClose",
             ContentOverState: "ContentOverlayClose",
-            Searchkey: "",
+            searchKey: "",
             SearchRedirectStatus: false,
+            id: '',
+            cartCount: 0
         }
         this.SearchOnChange = this.SearchOnChange.bind(this);
         this.SearchOnClick = this.SearchOnClick.bind(this);
         this.SearchRedirect = this.SearchRedirect.bind(this);
+    }
+
+    componentDidMount() {
+        this.updateStateFromProps();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.state.id !== ''){
+            axios.get(AppURL.CartCount(this.state.id)).then((response)=>{
+                this.setState({
+                    cartCount: response.data
+                });
+            }).catch();
+        }
+        if (prevProps.User !== this.props.User) {
+            this.updateStateFromProps();
+        }
+    }
+
+    updateStateFromProps() {
+        const { User } = this.props;
+        if (User) {
+            const { id } = User;
+            this.setState({
+                id: id,
+            });
+        }
     }
 
     logOut = () => {
@@ -25,12 +56,12 @@ class NavMenuDesktop extends Component {
 
     SearchOnChange(event){
         this.setState({
-            Searchkey: event.target.value,
+            searchKey: event.target.value,
         });
     }
 
     SearchOnClick(){
-        if (this.state.Searchkey.length >= 2){
+        if (this.state.searchKey.length >= 2){
             this.setState({
                 SearchRedirectStatus: true
             });
@@ -39,7 +70,7 @@ class NavMenuDesktop extends Component {
 
     SearchRedirect(){
         if (this.state.SearchRedirectStatus === true){
-            return <Redirect to={"/product-list-by-search/" + this.state.Searchkey} />
+            return <Redirect to={"/product-list-by-search/" + this.state.searchKey} />
         }
     }
 
@@ -68,7 +99,6 @@ class NavMenuDesktop extends Component {
     }
 
     render() {
-
         let auth;
         if (localStorage.getItem('token')){
             auth = (
@@ -79,6 +109,8 @@ class NavMenuDesktop extends Component {
                     <Link to="/" onClick={this.logOut} className="h4 btn">
                         LOGOUT
                     </Link>
+                    <Link to="/cart" className="cart-btn">
+                        <i className="fa fa-shopping-cart"></i> {this.state.cartCount} Items</Link>
                 </div>
             )
         } else {
@@ -90,6 +122,8 @@ class NavMenuDesktop extends Component {
                     <Link to="/register" className="h4 btn">
                         REGISTER
                     </Link>
+                    <Link to="/cart" className="cart-btn">
+                        <i className="fa fa-shopping-cart"></i> 0 Items</Link>
                 </div>
             )
         }
@@ -135,8 +169,6 @@ class NavMenuDesktop extends Component {
                                         </i>
                                     </Link>
                                     {auth}
-                                    <Link to="/cart" className="cart-btn">
-                                        <i className="fa fa-shopping-cart"></i> 3 Items</Link>
                                 </Col>
                             </Row>
                             {this.SearchRedirect()}

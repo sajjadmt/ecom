@@ -5,13 +5,94 @@ import {Link} from "react-router-dom";
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 import InnerImageZoom from 'react-inner-image-zoom';
 import ReviewList from "./ReviewList";
+import {toast, ToastContainer} from "react-toastify";
+import axios from "axios";
+import AppURL from "../../../api/AppURL";
 
 class ProductDetails extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             mainImage: '0',
+            isColor: null,
+            isSize: null,
+            color: '',
+            size: '',
+            quantity: '',
+            id: '',
+            productId: '',
+            addToCart: 'Add To Cart',
+            addFavourite: 'Favourite',
+        }
+    }
+
+    componentDidMount() {
+        this.updateStateFromProps();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.Product !== this.props.Product) {
+            this.updateStateFromProps();
+        }
+    }
+
+    updateStateFromProps() {
+        const {Product} = this.props;
+        if (Product && Product.Product && Product.Details) {
+            const {id} = Product.Product;
+            const {product_id: productId} = Product.Details;
+
+            this.setState({
+                id: id,
+                productId: productId,
+            });
+        }
+    }
+
+    addToCart = () => {
+        let isSize = this.state.isSize;
+        let isColor = this.state.isColor;
+        let color = this.state.color;
+        let size = this.state.size;
+        let quantity = this.state.quantity;
+
+        if (isColor === 'YES' && color.length === 0) {
+            toast.error('Please Select Color');
+        } else if (isSize === 'YES' && size.length === 0) {
+            toast.error('Please Select Size');
+        } else if (quantity.length === 0) {
+            toast.error('Please Select Quantity');
+        } else if (!localStorage.getItem('token')) {
+            toast.warn('Please Log In First');
+        } else {
+            this.setState({
+                addToCart: 'Adding...',
+            });
+            // const data = {
+            //     user_id: this.props.User.id,
+            //     product_id: this.state.id,
+            //     product_details_id: this.state.productId,
+            //     quantity: quantity,
+            // }
+            let formData = new FormData();
+            formData.append('user_id', this.props.User.id);
+            formData.append('product_id', this.state.id);
+            formData.append('product_details_id', this.state.productId);
+            formData.append('quantity', quantity);
+            axios.post(AppURL.AddToCart, formData).then((response) => {
+                if (response.data) {
+                    toast.success('Product Successfully Add To Cart');
+                    this.setState({
+                        addToCart: 'Add To Cart',
+                    });
+                } else {
+                    toast.error('Something Wrong!');
+                    this.setState({
+                        addToCart: 'Add To Cart',
+                    });
+                }
+            }).catch();
         }
     }
 
@@ -20,6 +101,29 @@ class ProductDetails extends Component {
         this.setState({
             mainImage: imageSrc
         });
+    }
+
+    addToFavourite = () => {
+        if (!localStorage.getItem('token')) {
+            toast.warn('Need To Be Log In');
+        } else {
+            this.setState({
+                addFavourite: 'Adding...'
+            });
+            axios.post(AppURL.AddToFavourite(this.props.User.id, this.state.id, this.state.productId)).then((response) => {
+                if (response.data) {
+                    toast.success('Successfully Add To Favourite');
+                    this.setState({
+                        addFavourite: 'Favourite'
+                    });
+                } else {
+                    toast.error('Something Wrong');
+                    this.setState({
+                        addFavourite: 'Favourite'
+                    });
+                }
+            }).catch();
+        }
     }
 
     priceOption(price, specialPrice) {
@@ -93,6 +197,30 @@ class ProductDetails extends Component {
             sizeDiv = "";
         }
 
+        if (this.state.isColor === null) {
+            if (color !== '') {
+                this.setState({
+                    isColor: 'YES'
+                });
+            } else {
+                this.setState({
+                    isColor: 'NO'
+                });
+            }
+        }
+
+        if (this.state.isSize === null) {
+            if (size !== '') {
+                this.setState({
+                    isSize: 'YES'
+                });
+            } else {
+                this.setState({
+                    isSize: 'NO'
+                });
+            }
+        }
+
         return (
             <Fragment>
                 <div>
@@ -157,7 +285,9 @@ class ProductDetails extends Component {
                                             className="text-info-emphasis">{productCode}</b></h6>
                                         <div className={colorDiv}>
                                             <h6 className="mt-2">Select Color:</h6>
-                                            <select className="form-control dorm-select">
+                                            <select onChange={(e) => {
+                                                this.setState({color: e.target.value})
+                                            }} className="form-control dorm-select">
                                                 <option>Select Color</option>
                                                 {colorOptions}
                                             </select>
@@ -165,7 +295,9 @@ class ProductDetails extends Component {
 
                                         <div className={sizeDiv}>
                                             <h6 className="mt-2">Select Size:</h6>
-                                            <select className="form-control dorm-select">
+                                            <select onChange={(e) => {
+                                                this.setState({size: e.target.value})
+                                            }} className="form-control dorm-select">
                                                 <option>Select Size</option>
                                                 {sizeOptions}
                                             </select>
@@ -173,7 +305,10 @@ class ProductDetails extends Component {
 
                                         <div>
                                             <h6 className="mt-2">Select Quantity:</h6>
-                                            <select className="form-control dorm-select">
+                                            <select onChange={(e) => {
+                                                this.setState({quantity: e.target.value})
+                                            }}
+                                                    className="form-control dorm-select">
                                                 <option>Select Quantity</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -185,14 +320,15 @@ class ProductDetails extends Component {
 
 
                                         <div className="input-group mt-3">
-                                            <button className="btn site-btn m-1 "><i
-                                                className="fa fa-shopping-cart"></i> Add To Cart
+                                            <button onClick={this.addToCart} type="submit"
+                                                    className="btn site-btn m-1 "><i
+                                                className="fa fa-shopping-cart"></i> {this.state.addToCart}
                                             </button>
                                             <button className="btn btn-primary m-1"><i className="fa fa-car"></i> Order
                                                 Now
                                             </button>
-                                            <button className="btn btn-primary m-1"><i
-                                                className="fa fa-heart"></i> Favourite
+                                            <button onClick={this.addToFavourite} className="btn btn-primary m-1"><i
+                                                className="fa fa-heart"></i> {this.state.addFavourite}
                                             </button>
                                         </div>
                                     </Col>
@@ -214,6 +350,7 @@ class ProductDetails extends Component {
                             </Col>
                         </Row>
                     </Container>
+                    <ToastContainer/>
                 </div>
                 <div>
                     <SuggestedProduct SubCategoryId={subCategoryId}/>
