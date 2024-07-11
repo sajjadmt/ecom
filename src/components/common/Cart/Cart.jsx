@@ -35,7 +35,7 @@ class Cart extends Component {
                                 <input placeholder={list.quantity} className="form-control text-center" type="number"/>
                                 <Button ProductId={list.product_id} onClick={this.deleteCart}
                                         className="btn btn-block w-100 mt-3  site-btn"><i
-                                    className="fa fa-trash-alt"></i> Remove </Button>
+                                    className="fa fa-trash-alt"></i> Delete </Button>
                             </Col>
                         </Row>
                     </Card.Body>
