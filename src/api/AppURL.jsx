@@ -29,6 +29,14 @@ class AppUrl {
         return this.BaseURL + "/cart-list/" + UserId;
     }
 
+    static QuantityIncrease(Id) {
+        return this.BaseURL + "/quantity-increase/" + Id;
+    }
+
+    static QuantityDecrease(Id) {
+        return this.BaseURL + "/quantity-decrease/" + Id;
+    }
+
     static DeleteCart(UserId,ProductId) {
         return this.BaseURL + "/delete-cart/" + UserId + '/' + ProductId;
     }
