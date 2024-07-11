@@ -6,10 +6,27 @@ import {toast, ToastContainer} from "react-toastify";
 
 class Cart extends Component {
 
-    deleteCart = (event) => {
-        let productId = event.target.getAttribute('ProductId');
+    deleteCart = (productId) => {
         axios.get(AppURL.DeleteCart(this.props.User.id, productId)).then((response) => {
             toast.success('Successfully Deleted');
+            window.location.reload();
+        }).catch((error) => {
+            toast.error('Something Wrong');
+        });
+    }
+
+    quantityIncrease = (id) =>{
+        axios.get(AppURL.QuantityIncrease(id)).then((response)=>{
+            toast.success('Quantity Successfully Increased');
+            window.location.reload();
+        }).catch((error)=>{
+            toast.error('Something Wrong');
+        });
+    }
+
+    quantityDecrease = (id) =>{
+        axios.get(AppURL.QuantityDecrease(id)).then((response)=>{
+            toast.success('Quantity Successfully Decreased');
             window.location.reload();
         }).catch((error)=>{
             toast.error('Something Wrong');
@@ -32,10 +49,15 @@ class Cart extends Component {
                                 <h6>Total Price = ${list.total_price}</h6>
                             </Col>
                             <Col md={3} lg={3} sm={12} xs={12}>
-                                <input placeholder={list.quantity} className="form-control text-center" type="number"/>
-                                <Button ProductId={list.product_id} onClick={this.deleteCart}
-                                        className="btn btn-block w-100 mt-3  site-btn"><i
-                                    className="fa fa-trash-alt"></i> Delete </Button>
+                                <Button onClick={()=>this.quantityIncrease(list.id)}
+                                        className="btn mt-3 btn-sm mx-1 btn-success"><i
+                                    className="fa fa-plus"></i> </Button>
+                                <Button onClick={()=>this.quantityDecrease(list.id)}
+                                        className="btn mt-3 btn-sm mx-1 btn-warning"><i
+                                    className="fa fa-minus"></i> </Button>
+                                <Button onClick={() => this.deleteCart(list.product_id)}
+                                        className="btn mt-3 btn-sm mx-1 btn-danger"><i
+                                    className="fa fa-trash-alt"></i> </Button>
                             </Col>
                         </Row>
                     </Card.Body>
