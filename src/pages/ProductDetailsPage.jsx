@@ -29,6 +29,7 @@ class ProductDetailsPage extends Component {
     }
 
     render() {
+        const user = this.props.user;
         return (
             <Fragment>
                 <div className="Desktop">
@@ -37,7 +38,7 @@ class ProductDetailsPage extends Component {
                 <div className="Mobile">
                     <NavMenuMobile/>
                 </div>
-                <ProductDetails Product={this.state.ProductData}/>
+                <ProductDetails Product={this.state.ProductData} User={user}/>
                 <div className="Desktop">
                     <FooterDesktop/>
                 </div>

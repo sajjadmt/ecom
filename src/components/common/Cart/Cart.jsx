@@ -1,12 +1,47 @@
 import React, {Component, Fragment} from 'react'
 import {Button, Card, Col, Container, Row} from "react-bootstrap";
-import Product1 from "../../../assets/images/product/product1.png";
-import Product2 from "../../../assets/images/product/product2.png";
-import Product3 from "../../../assets/images/product/product3.png";
-import Product4 from "../../../assets/images/product/product4.png";
+import axios from "axios";
+import AppURL from "../../../api/AppURL";
+import {toast, ToastContainer} from "react-toastify";
 
 class Cart extends Component {
+
+    deleteCart = (event) => {
+        let productId = event.target.getAttribute('ProductId');
+        axios.get(AppURL.DeleteCart(this.props.User.id, productId)).then((response) => {
+            toast.success('Successfully Deleted');
+            window.location.reload();
+        }).catch((error)=>{
+            toast.error('Something Wrong');
+        });
+    }
+
     render() {
+        const cartList = this.props.CartList;
+        const cartView = cartList.map((list, i) => {
+            return <Col className="p-1" lg={12} md={12} sm={12} xs={12}>
+                <Card>
+                    <Card.Body>
+                        <Row>
+                            <Col md={3} lg={3} sm={6} xs={6}>
+                                <img className="cart-product-img" src={list['product'].image}/>
+                            </Col>
+                            <Col md={6} lg={6} sm={6} xs={6}>
+                                <h5 className="product-name">{list['product'].title}</h5>
+                                <h6> Quantity = {list.quantity} </h6>
+                                <h6>Total Price = ${list.total_price}</h6>
+                            </Col>
+                            <Col md={3} lg={3} sm={12} xs={12}>
+                                <input placeholder={list.quantity} className="form-control text-center" type="number"/>
+                                <Button ProductId={list.product_id} onClick={this.deleteCart}
+                                        className="btn btn-block w-100 mt-3  site-btn"><i
+                                    className="fa fa-trash-alt"></i> Remove </Button>
+                            </Col>
+                        </Row>
+                    </Card.Body>
+                </Card>
+            </Col>
+        });
         return (
             <Fragment>
                 <Container>
@@ -14,107 +49,10 @@ class Cart extends Component {
                     <div className="section-title text-center mb-55"><h2>Product Cart List</h2>
                     </div>
                     <Row>
-                        <Col className="p-1" lg={12} md={12} sm={12} xs={12}>
-                            <Card>
-                                <Card.Body>
-                                    <Row>
-                                        <Col md={3} lg={3} sm={6} xs={6}>
-                                            <img className="cart-product-img" src={Product1}/>
-                                        </Col>
-                                        <Col md={6} lg={6} sm={6} xs={6}>
-                                            <h5 className="product-name">ASUS TUF A15 FA506IU Ryzen 7 4800H GTX</h5>
-                                            <h6> Quantity = 05 </h6>
-                                            <h6>Price = 05 x 100 = 5000$</h6>
-                                        </Col>
-                                        <Col md={3} lg={3} sm={12} xs={12}>
-                                            <input placeholder="1" className="form-control text-center" type="number"/>
-                                            <Button className="btn btn-block w-100 mt-3  site-btn"><i
-                                                className="fa fa-trash-alt"></i> Remove </Button>
-                                        </Col>
-                                    </Row>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col className="p-1" lg={12} md={12} sm={12} xs={12}>
-                            <Card>
-                                <Card.Body>
-                                    <Row>
-                                        <Col md={3} lg={3} sm={6} xs={6}>
-                                            <img className="cart-product-img" src={Product2}/>
-                                        </Col>
-                                        <Col md={6} lg={6} sm={6} xs={6}>
-                                            <h5 className="product-name">ASUS TUF A15 FA506IU Ryzen 7 4800H GTX</h5>
-                                            <h6> Quantity = 05 </h6>
-                                            <h6>Price = 05 x 100 = 5000$</h6>
-                                        </Col>
-                                        <Col md={3} lg={3} sm={12} xs={12}>
-                                            <input placeholder="1" className="form-control text-center" type="number"/>
-                                            <Button className="btn btn-block w-100 mt-3  site-btn"><i
-                                                className="fa fa-trash-alt"></i> Remove </Button>
-                                        </Col>
-                                    </Row>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col className="p-1" lg={12} md={12} sm={12} xs={12}>
-                            <Card>
-                                <Card.Body>
-                                    <Row>
-                                        <Col md={3} lg={3} sm={6} xs={6}>
-                                            <img className="cart-product-img" src={Product3}/>
-                                        </Col>
-                                        <Col md={6} lg={6} sm={6} xs={6}>
-                                            <h5 className="product-name">ASUS TUF A15 FA506IU Ryzen 7 4800H GTX</h5>
-                                            <h6> Quantity = 05 </h6>
-                                            <h6>Price = 05 x 100 = 5000$</h6>
-                                        </Col>
-                                        <Col md={3} lg={3} sm={12} xs={12}>
-                                            <input placeholder="1" className="form-control text-center" type="number"/>
-                                            <Button className="btn btn-block w-100 mt-3  site-btn"><i
-                                                className="fa fa-trash-alt"></i> Remove </Button>
-                                        </Col>
-                                    </Row>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col className="p-1" lg={12} md={12} sm={12} xs={12}>
-                            <Card>
-                                <Card.Body>
-                                    <Row>
-                                        <Col md={3} lg={3} sm={6} xs={6}>
-                                            <img className="cart-product-img"
-                                                 src="https://rukminim2.flixcart.com/image/416/416/ktketu80/mobile/6/n/d/iphone-13-mlpg3hn-a-apple-original-imag6vpyghayhhrh.jpeg?q=70&crop=false"/>
-                                        </Col>
-                                        <Col md={6} lg={6} sm={6} xs={6}>
-                                            <h5 className="product-name">ASUS TUF A15 FA506IU Ryzen 7 4800H GTX</h5>
-                                            <h6> Quantity = 05 </h6>
-                                            <h6>Price = 05 x 100 = 5000$</h6>
-                                        </Col>
-                                        <Col md={3} lg={3} sm={12} xs={12}>
-                                            <input placeholder="1" className="form-control text-center" type="number"/>
-                                            <Button className="btn btn-block w-100 mt-3  site-btn"><i
-                                                className="fa fa-trash-alt"></i> Remove </Button>
-                                        </Col>
-                                    </Row>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col className="p-1" lg={12} md={12} sm={12} xs={12}>
-                            <Card>
-                                <Card.Body>
-                                    <Row>
-                                        <Col md={4} lg={4} sm={6} xs={6}>
-                                            <h5> Total Items = 05 </h5>
-                                            <h5>Total Price = 5000$</h5>
-                                            <Button className="btn btn-block w-100 mt-3  site-btn"><i
-                                                className="fa fa-shopping-cart"></i> CheckOut </Button>
-                                        </Col>
-                                    </Row>
-                                </Card.Body>
-                            </Card>
-                        </Col>
+                        {cartView}
                     </Row>
                 </Container>
+                <ToastContainer/>
             </Fragment>
         )
     }
