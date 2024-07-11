@@ -25,6 +25,14 @@ class AppUrl {
         return this.BaseURL + "/get-favourite/" + UserId;
     }
 
+    static CartList(UserId) {
+        return this.BaseURL + "/cart-list/" + UserId;
+    }
+
+    static DeleteCart(UserId,ProductId) {
+        return this.BaseURL + "/delete-cart/" + UserId + '/' + ProductId;
+    }
+
     static DeleteFavourite(UserId,ProductId) {
         return this.BaseURL + "/delete-favourite/" + UserId + '/' + ProductId;
     }

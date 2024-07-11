@@ -3,35 +3,17 @@ import {Button, Card, Col, Container, Row} from "react-bootstrap";
 import axios from "axios";
 import AppURL from "../../../api/AppURL";
 import {toast, ToastContainer} from "react-toastify";
-import {Redirect} from "react-router-dom";
 
 class Favourite extends Component {
-
-    constructor() {
-        super();
-        this.state = {
-            pageRefreshStatus: false
-        }
-    }
 
     deleteFavourite = (event) => {
         let productId = event.target.getAttribute('ProductId');
         axios.get(AppURL.DeleteFavourite(this.props.User.id, productId)).then((response) => {
-                toast.success('Item Deleted Successfully');
-                this.setState({
-                    pageRefreshStatus: true
-                });
+            toast.success('Item Deleted Successfully');
+            window.location.reload();
         }).catch((error) => {
             toast.error('Something Wrong');
         });
-    }
-
-    pageRefresh = () => {
-        if (this.state.pageRefreshStatus === true) {
-            return (
-                <Redirect to="/favourite"/>
-            )
-        }
     }
 
     render() {
@@ -93,7 +75,6 @@ class Favourite extends Component {
                     </Row>
                 </Container>
                 <ToastContainer/>
-                {this.pageRefresh()}
             </Fragment>
         )
     }
