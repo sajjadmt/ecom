@@ -29,7 +29,7 @@ class ReviewList extends Component {
                     case "1":
                         return (
                             <div key={i}>
-                                <p className=" p-0 m-0"><span className="Review-Title">{list.reviewer_name}</span>
+                                <p className=" p-0 m-0"><span className="Review-Title">{list['user'].name}</span>
                                     <span
                                         className="text-success"> <i className="fa fa-star"></i> </span></p>
                                 <p>{list.reviewer_comment}</p>
@@ -38,7 +38,7 @@ class ReviewList extends Component {
                     case "2":
                         return (
                             <div key={i}>
-                                <p className=" p-0 m-0"><span className="Review-Title">{list.reviewer_name}</span>
+                                <p className=" p-0 m-0"><span className="Review-Title">{list['user'].name}</span>
                                     <span
                                         className="text-success"> <i className="fa fa-star"></i> <i
                                         className="fa fa-star"></i> </span></p>
@@ -48,7 +48,7 @@ class ReviewList extends Component {
                     case "3":
                         return (
                             <div key={i}>
-                                <p className=" p-0 m-0"><span className="Review-Title">{list.reviewer_name}</span>
+                                <p className=" p-0 m-0"><span className="Review-Title">{list['user'].name}</span>
                                     <span
                                         className="text-success"> <i className="fa fa-star"></i> <i
                                         className="fa fa-star"></i> <i className="fa fa-star"></i> </span></p>
@@ -58,7 +58,7 @@ class ReviewList extends Component {
                     case "4":
                         return (
                             <div key={i}>
-                                <p className=" p-0 m-0"><span className="Review-Title">{list.reviewer_name}</span>
+                                <p className=" p-0 m-0"><span className="Review-Title">{list['user'].name}</span>
                                     <span
                                         className="text-success"> <i className="fa fa-star"></i> <i
                                         className="fa fa-star"></i> <i className="fa fa-star"></i> <i
@@ -69,7 +69,7 @@ class ReviewList extends Component {
                     case "5":
                         return (
                             <div key={i}>
-                                <p className=" p-0 m-0"><span className="Review-Title">{list.reviewer_name}</span>
+                                <p className=" p-0 m-0"><span className="Review-Title">{list['user'].name}</span>
                                     <span
                                         className="text-success"> <i className="fa fa-star"></i> <i
                                         className="fa fa-star"></i> <i className="fa fa-star"></i> <i

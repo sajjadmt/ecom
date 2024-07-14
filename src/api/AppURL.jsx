@@ -29,6 +29,18 @@ class AppUrl {
         return this.BaseURL + "/cart-list/" + UserId;
     }
 
+    static AddToOrder(UserId) {
+        return this.BaseURL + "/add-to-order/" + UserId;
+    }
+
+    static OrderHistory(UserId) {
+        return this.BaseURL + "/order-history/" + UserId;
+    }
+
+    static PostReview(UserId) {
+        return this.BaseURL + "/post-review/" + UserId;
+    }
+
     static QuantityIncrease(Id) {
         return this.BaseURL + "/quantity-increase/" + Id;
     }

@@ -1,43 +1,44 @@
 import React, {Component, Fragment} from 'react';
-import {Col, Container, Form, Row} from "react-bootstrap";
-import ProfilePhoto from "../../assets/images/profile.jpg";
-import {Redirect} from "react-router-dom";
+import {Card, Col, Container, ListGroup, Row} from "react-bootstrap";
+import {Link, Redirect} from "react-router-dom";
 
 class Profile extends Component {
+    avatar;
     render() {
 
         let name;
         let email;
-        if (this.props.user){
+        if (this.props.user) {
             name = this.props.user.name;
             email = this.props.user.email;
+            this.avatar = this.props.user.profile_photo_path;
         }
 
-        if (!localStorage.getItem('token')){
-            return <Redirect to={'/login'} />
+        if (!localStorage.getItem('token')) {
+            return <Redirect to={'/login'}/>
         }
 
         return (
             <Fragment>
-                <Container>
-                    <Row className="p-2">
-                        <Col className="shadow-sm mt-2 bg-white" lg={12} md={12} sm={12} xs={12}>
-                            <Row>
-                                <Col lg={6} md={6} sm={12} xs={12}>
-                                    <Form className="onboardForm">
-                                        <h4 className="section-title-login">
-                                            USER PROFILE
-                                        </h4>
-                                        <ul className="list-group">
-                                            <li className="list-group-item">Name: {name}</li>
-                                            <li className="list-group-item">Email: {email}</li>
-                                        </ul>
-                                    </Form>
-                                </Col>
-                                <Col className="p-0 m-0 Desktop" lg={6} md={6} sm={6} xs={6}>
-                                    <img className="onboardBanner" src={ProfilePhoto} alt=""/>
-                                </Col>
-                            </Row>
+                <Container className="mt-5">
+                    <br/>
+                    <br/>
+                    <Row className="mt-5">
+                        <Col lg={4} md={4} sm={12}>
+                            <Card style={{ width: '18rem' }}>
+                                <center><Card.Img className="avatar" variant="top" src={this.avatar} /></center>
+                                <ListGroup className="list-group-flush">
+                                    <ListGroup.Item><b><Link className="text-dark text-decoration-none" to="/order-history">Order History</Link></b></ListGroup.Item>
+                                    <ListGroup.Item><b><Link className="text-dark text-decoration-none" to="/order-history">Order History</Link></b></ListGroup.Item>
+                                    <ListGroup.Item><b><Link className="text-dark text-decoration-none" to="/order-history">Order History</Link></b></ListGroup.Item>
+                                </ListGroup>
+                            </Card>
+                        </Col>
+                        <Col lg={8} md={8} sm={12} className="mt-5">
+                            <ul className="list-group">
+                                <li className="list-group-item">Name: {name}</li>
+                                <li className="list-group-item">Email: {email}</li>
+                            </ul>
                         </Col>
                     </Row>
                 </Container>

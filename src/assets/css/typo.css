@@ -61,3 +61,8 @@
     border-radius: 10px;
     border: #e3e3e3 solid;
 }
+
+.avatar{
+    width: 200px;
+    height: 200px;
+}
