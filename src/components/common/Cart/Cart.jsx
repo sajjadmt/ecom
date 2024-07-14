@@ -14,19 +14,17 @@ class Cart extends Component {
             toast.error('Something Wrong');
         });
     }
-
-    quantityIncrease = (itemId) => {
-        axios.get(AppURL.QuantityIncrease(itemId)).then((response) => {
+    quantityIncrease = (id) => {
+        axios.get(AppURL.QuantityIncrease(id)).then((response) => {
             toast.success('Quantity Successfully Increased');
             window.location.reload();
         }).catch((error) => {
             toast.error('Something Wrong');
         });
     }
-
-    quantityDecrease = (itemId) => {
-        axios.get(AppURL.QuantityDecrease(itemId)).then((response) => {
-            toast.warn('Quantity Successfully Decreased');
+    quantityDecrease = (id) => {
+        axios.get(AppURL.QuantityDecrease(id)).then((response) => {
+            toast.success('Quantity Successfully Decreased');
             window.location.reload();
         }).catch((error) => {
             toast.error('Something Wrong');
@@ -50,14 +48,14 @@ class Cart extends Component {
                             </Col>
                             <Col md={3} lg={3} sm={12} xs={12}>
                                 <Button onClick={() => this.quantityIncrease(list.id)}
-                                        className="btn mt-4 mx-1 btn-sm btn-success"><i
-                                    className="fa fa-plus"></i> </Button>
+                                        className="btn mt-4 mx-1 btn-success btn-sm"><i
+                                    className="fa fa-plus"></i></Button>
                                 <Button onClick={() => this.quantityDecrease(list.id)}
-                                        className="btn mt-4 mx-1 btn-sm btn-warning"><i
-                                    className="fa fa-minus"></i> </Button>
+                                        className="btn mt-4 mx-1 btn-warning btn-sm"><i
+                                    className="fa fa-minus"></i></Button>
                                 <Button onClick={() => this.deleteCart(list.product_id)}
-                                        className="btn mt-4 mx-1 btn-sm btn-danger"><i
-                                    className="fa fa-trash-alt"></i> </Button>
+                                        className="btn mt-4 mx-1 btn-danger btn-sm"><i
+                                    className="fa fa-trash-alt"></i></Button>
                             </Col>
                         </Row>
                     </Card.Body>
