@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import {Breadcrumb, Col, Container, Row} from "react-bootstrap";
 import SuggestedProduct from "./SuggestedProduct";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 import InnerImageZoom from 'react-inner-image-zoom';
 import ReviewList from "./ReviewList";
@@ -23,6 +23,7 @@ class ProductDetails extends Component {
             id: '',
             productId: '',
             addToCart: 'Add To Cart',
+            orderNow: 'Order Now',
             addFavourite: 'Favourite',
         }
     }
@@ -69,12 +70,6 @@ class ProductDetails extends Component {
             this.setState({
                 addToCart: 'Adding...',
             });
-            // const data = {
-            //     user_id: this.props.User.id,
-            //     product_id: this.state.id,
-            //     product_details_id: this.state.productId,
-            //     quantity: quantity,
-            // }
             let formData = new FormData();
             formData.append('user_id', this.props.User.id);
             formData.append('product_id', this.state.id);
@@ -90,6 +85,46 @@ class ProductDetails extends Component {
                     toast.error('Something Wrong!');
                     this.setState({
                         addToCart: 'Add To Cart',
+                    });
+                }
+            }).catch();
+        }
+    }
+
+    orderNow = () => {
+        let isSize = this.state.isSize;
+        let isColor = this.state.isColor;
+        let color = this.state.color;
+        let size = this.state.size;
+        let quantity = this.state.quantity;
+
+        if (isColor === 'YES' && color.length === 0) {
+            toast.error('Please Select Color');
+        } else if (isSize === 'YES' && size.length === 0) {
+            toast.error('Please Select Size');
+        } else if (quantity.length === 0) {
+            toast.error('Please Select Quantity');
+        } else if (!localStorage.getItem('token')) {
+            toast.warn('Please Log In First');
+        } else {
+            this.setState({
+                orderNow: 'Ordering...',
+            });
+            let formData = new FormData();
+            formData.append('user_id', this.props.User.id);
+            formData.append('product_id', this.state.id);
+            formData.append('product_details_id', this.state.productId);
+            formData.append('quantity', quantity);
+            axios.post(AppURL.AddToCart, formData).then((response) => {
+                if (response.data) {
+                    this.setState({
+                        orderNow: 'Order Now',
+                    });
+                    window.location.href = "/cart";
+                } else {
+                    toast.error('Something Wrong!');
+                    this.setState({
+                        orderNow: 'Order Now',
                     });
                 }
             }).catch();
@@ -324,8 +359,7 @@ class ProductDetails extends Component {
                                                     className="btn site-btn m-1 "><i
                                                 className="fa fa-shopping-cart"></i> {this.state.addToCart}
                                             </button>
-                                            <button className="btn btn-primary m-1"><i className="fa fa-car"></i> Order
-                                                Now
+                                            <button onClick={this.orderNow} className="btn btn-primary m-1"><i className="fa fa-car"></i> {this.state.orderNow}
                                             </button>
                                             <button onClick={this.addToFavourite} className="btn btn-primary m-1"><i
                                                 className="fa fa-heart"></i> {this.state.addFavourite}

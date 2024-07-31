@@ -3,6 +3,7 @@ import {Button, Card, Col, Container, Row} from "react-bootstrap";
 import axios from "axios";
 import AppURL from "../../../api/AppURL";
 import {toast, ToastContainer} from "react-toastify";
+import {Redirect} from "react-router-dom";
 
 class Cart extends Component {
 
@@ -81,6 +82,11 @@ class Cart extends Component {
     }
 
     render() {
+
+        if (!localStorage.getItem('token')) {
+            return <Redirect to={'/login'}/>
+        }
+
         const cartList = this.props.CartList;
         let total = 0;
         const cartView = cartList.map((list, i) => {

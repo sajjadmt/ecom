@@ -3,6 +3,7 @@ import {Button, Card, Col, Container, Modal, Row} from "react-bootstrap";
 import {toast, ToastContainer} from "react-toastify";
 import axios from "axios";
 import AppURL from "../../../api/AppURL";
+import {Redirect} from "react-router-dom";
 
 class OrderHistory extends Component {
 
@@ -63,6 +64,11 @@ class OrderHistory extends Component {
     };
 
     render() {
+
+        if (!localStorage.getItem('token')) {
+            return <Redirect to={'/login'}/>
+        }
+
         const orderList = this.props.OrderList;
         const orderView = orderList.map((list, i) => {
             return <div>

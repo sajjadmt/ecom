@@ -3,6 +3,7 @@ import {Button, Card, Col, Container, Row} from "react-bootstrap";
 import axios from "axios";
 import AppURL from "../../../api/AppURL";
 import {toast, ToastContainer} from "react-toastify";
+import {Redirect} from "react-router-dom";
 
 class Favourite extends Component {
 
@@ -17,6 +18,11 @@ class Favourite extends Component {
     }
 
     render() {
+
+        if (!localStorage.getItem('token')) {
+            return <Redirect to={'/login'}/>
+        }
+
         const productList = this.props.Products;
         const favouriteView = productList.map((favourite, i) => {
             if (favourite.special_price === "") {
